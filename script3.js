@@ -96,36 +96,24 @@ async function fetchData() {
         const response = await fetch(`https://ec2.flaresolution.com/get-all-data?formattedDate=${encodeURIComponent(formattedDate)}`);        
         const data = await response.json();
 
-        console.log(data);
+        // console.log(data);
         
         data.map((item,index)=>{
-            console.log(item);
+            // console.log(item);
 
             let temp = document.createElement("div");
             temp.classList.add("flex-row");
             temp.innerHTML= 
             `
             <div class="showing">
-                <div class="flex-cell">${item[6]}</div>
+                <div class="flex-cell">${item[6].includes(item[8])||item[8].includes(item[6])? "" : item[6]}</div>
                 <div class="flex-cell">${item[8]}</div>
-                <div class="flex-subcell">
-                    <div class="flex-subrow">
-                        <div class="flex-cell">1호</div>
-                        <div class="flex-cell">2호</div>
-                        <div class="flex-cell">3호</div>
-                        <div class="flex-cell">4호</div>
-                        <div class="flex-cell">5호</div>
-                        <div class="flex-cell">기타</div>
-                    </div>
-                    <div class="flex-subrow">
-                        <div class="flex-cell">${item[14]}</div>
-                        <div class="flex-cell">${item[15]}</div>
-                        <div class="flex-cell">${item[16]}</div>
-                        <div class="flex-cell">${item[17]}</div>
-                        <div class="flex-cell">${item[18]}</div>
-                        <div class="flex-cell">${item[19]}</div>
-                    </div>
-                </div>
+                <div class="flex-cell">${item[14]}</div>
+                <div class="flex-cell">${item[15]}</div>
+                <div class="flex-cell">${item[16]}</div>
+                <div class="flex-cell">${item[17]}</div>
+                <div class="flex-cell">${item[18]}</div>
+                <div class="flex-cell">${item[19]}</div>
                 <div class="flex-cell">${item[24]}</div>
 
             </div>

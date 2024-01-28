@@ -26,6 +26,9 @@ body{
     color:black;
     border:1px solid white;
 }
+.flex-header .not-showing{
+    background-color: gray;
+}
 
 .flex-row {
     display: flex;
@@ -59,10 +62,21 @@ body{
     width: 160px;
     flex:auto;
 }
-
+/* 배송요청사항 */
+.not-showing > .flex-cell:nth-child(11){
+    /* background-color: aqua; */
+    width: 130px;
+    flex:auto;
+}
 
 /* 요청사항 */
 .not-showing > .flex-cell:nth-child(13){
+    /* background-color: aqua; */
+    width: 200px;
+    flex:auto;
+}
+/* to 아버지 */
+.not-showing > .flex-cell:nth-child(24){
     /* background-color: aqua; */
     width: 200px;
     flex:auto;
@@ -72,11 +86,11 @@ body{
 .showing > .flex-cell:nth-child(1){
     /* background-color: red; */
     /* flex-basis: 5%; */
-    flex-grow: 0.5;
+    flex-grow: 1.8;
 }
 .showing > .flex-cell:nth-child(2){
     /* background-color: blue; */
-    flex-grow: 0.5;
+    flex-grow: 1.8;
 }
 
 .flex-cell {
@@ -109,9 +123,9 @@ body{
 
 /* etc to father biiger */
 
-.showing > .flex-cell:nth-child(4){
+.showing > .flex-cell:nth-child(9){
     /* background-color: aquamarine; */
-    flex-grow: 2;
+    flex-grow: 10;
 }
 
 
@@ -181,4 +195,33 @@ body{
     margin-top: 20px;
     margin-left: 20px;
     font-size: large;
+}
+
+@media print { 
+    @page {
+        size: landscape; /* Set the page to landscape orientation */
+        margin: 10mm; /* Adjust the margin as needed */
+    }
+    
+    html {
+        
+        width: 100%; /* Use the full width of the page */
+        height: 100%; 
+        margin: 0;
+        padding: 0;
+        overflow: visible; /* Ensure the scaled content is not clipped */
+        column-count: 2;
+    }
+
+
+    .container_body {
+        transform: scale(0.5); /* Scale the content to fit half the page width */
+        transform-origin: left center; /* Scale from the left center */
+        width: 200%; /* Double the width to maintain the original layout after scaling */
+
+    }
+
+    .container_controller{
+        display: none;
+    }
 }
