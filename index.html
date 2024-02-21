@@ -1,45 +1,18 @@
-<!-- index.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>호랑곶감</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
-
 </head>
 <body>
-    <h1>호랑곶감 주문 조회</h1>
-    <h4>입금 확인 후 최대 24시간 후부터 조회 가능합니다</h4>
-    <br>
-    <label for="name">성함: (주문서에 입력한 성함 그대로 적어주세요!)</label>
-    <br>
-    <input type="text" id="name" name="name">
-    <br>
-    <label for="phoneNumber">휴대폰 번호 마지막 네자리 :</label>
-    <br>
-    <input type="text" id="phoneNumber" name="phoneNumber" oninput="checkPhoneNumber()"><br>
-    <br>
-
-    <button onclick="checkOrder()">조회하기</button>
-    <div id="loading" style="display: none;"></div>
-    <div id="result" style="display: none;">
-        <h2></h2>
-        <h4 id="send_name">주문자 성함 : </h4>
-        <h4 id="send_contact">휴대폰 번호 : </h4>
-        <h4 id="expected_date">출고 예정일 : <br><br>
-            (택배 도착일이 아닌 <strong>"발송일"</strong>지정 예약입니다.)<br>- 보통 영업일 기준 1~2일 후 도착합니다.
-        </h4>
-        <h4 id="rcv_name">받는 분 성함 : </h4>
-        <h4 id="rcv_contact">받는 분 연락처 : </h4>
-        <h4 id="rcv_address">받는 분 주소 : </h4>
-        <h4 id="orderList">주문 내역 : </h4>
-        <h4 id="totalFee">총 금액(배송비 포함) : </h4>
+    <h2>호랑곶감 홈페이지</h2>
+    <div class="box_links">
+        <button><a href="https://blog.naver.com/sanzalag/222162521584">상품보기</a></button>
+        <button><a href="./submitOrder.html">주문하기</a></button>
+        <button><a href="./checkOrder.html">주문 확인하기</a></button>
+        
+        <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카톡 문의하기</a></button>
     </div>
-    <script src="./script.js"></script>
 </body>
-
 </html>

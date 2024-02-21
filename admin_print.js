@@ -74,7 +74,7 @@ const searchDate = document.querySelector("#searchDate");
 searchDate.valueAsDate = new Date();
 
 async function fetchData() {
-
+    stopLoadingAnimation();
     const table = document.querySelector(".flex-table");
     const header = document.querySelector(".flex-header");
     const dateBox = document.querySelector("#date");
@@ -194,27 +194,22 @@ window.addEventListener("load", lock);
 
 
 // loading interval
-
+let loadingIntervalId; // set interval ID
 
 function startLoadingAnimation() {
     const loadingElement = document.getElementById('loading');
-    loadingElement.innerHTML = "";
-    document.getElementById('loading').style.display = 'block';
-    let loadingInterval = "";
-    
-    let dots = 0;
     let date = searchDate.value;
-    console.log(date);
-    loadingElement.innerHTML = date+ `조회중`;
-    
-    loadingInterval = setInterval(() => {
-        dots = (dots + 1) % 4; // Cycle from 0 to 3
-        loadingElement.innerText = date + "조회중" + '.'.repeat(dots);
-    }, 200); // Update every 200 milliseconds
+    let dots = 0;
+    loadingIntervalId = setInterval(() => { // 인터벌 ID 저장
+        dots = (dots + 1) % 4; // 0에서 3까지 순환
+        loadingElement.innerText = date+ "조회중" + '.'.repeat(dots);
+    }, 200);
 }
 
 function stopLoadingAnimation() {
+    // loadingInterval("stop");
+    clearInterval(loadingIntervalId);
     const loadingElement = document.getElementById('loading');
+
     loadingElement.innerText ="";
-    document.getElementById('loading').style.display = 'none';
 }

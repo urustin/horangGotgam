@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
+@import url(./reset.css);
+
+.container_body{
+    text-align: center;
+    line-height: 1.7;
+}
+
+#dateList{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.itemBox{
+    display: flex;
+    width: 50px;
+}

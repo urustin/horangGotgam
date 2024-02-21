@@ -1,0 +1,129 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
+@import url(./reset.css);
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;  
+    text-align: center; 
+}
+
+h1{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 50px 0;
+}
+.imgBox{
+    position: relative;
+    
+}
+#btn_detail{
+    font-size: 20px;
+    padding: 20px;
+    display: block;
+    margin: 20px auto;
+
+}
+
+.box_description{
+    line-height: 1.5;
+}
+.box_description button{
+    margin: 3px;
+}
+
+
+.box_reserve_date{
+    line-height: 1.5;
+}
+
+
+
+.productImg{
+    width:60%;
+    padding: 0 20%;
+    object-fit: cover; 
+}
+@media screen and (max-width: 600px) {
+
+    .productImg{
+        width: 100%;
+        padding: 0;
+    }
+}
+.imgBox .imgCaption{
+    position:absolute;
+    right: 20%;
+    bottom: 10px;
+    text-align:end;
+    width: 20%;
+    /* left:40%; */
+}
+
+.imgBox .imgCaption h4,h6{
+    margin: 0px;
+}
+.imgBox .imgCaption h6{
+    color: rgb(40, 40, 40);
+    opacity: 0.8;
+}
+
+#priceTag{
+    position: fixed;
+    /* top:100px; */
+    left:5%;
+    bottom: 10%;
+    text-align: left;
+    z-index: 20;
+    background-color: #3a4e5ff2;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+@media screen and (max-width: 600px) {
+
+    #priceTag{
+        left:3%;
+        bottom:20px;
+    }
+}
+
+#btn_submit{
+    margin-top: 40px;
+    /* margin-bottom: 150px; */
+}
+#orderBox{
+    margin-bottom: 150px;
+}
+label{
+    font-weight: 700;
+}
+
+input{
+    margin : 10px 0;
+}
+select{
+    margin : 10px 0;
+}
+h5{
+    font-size: 0.8rem;
+}
+#result{
+    line-height: 1.5;
+}
+#result h4,p{
+    margin : 10px 0px;
+}
+.none{
+    display: none;
+}
+
+@media screen and (max-width: 600px) {
+
+    .imgBox .imgCaption h4,h6{
+        font-size: 0.9rem;
+    }
+}
+
+select{
+    font-size: 20px;
+}

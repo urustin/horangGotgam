@@ -1,0 +1,21 @@
+
+.header{
+    position:relative;
+    /* background-color: aquamarine; */
+    display: flex;
+    height: 50px;
+    font-size: 2rem;
+}
+
+.box_links{
+    margin-left: auto;
+    margin-right : 5%;
+    /* right:5%; */
+    /* margin-left: 20px; */
+}
+
+@media screen and (max-width: 600px) {
+    .header{
+        display: block;
+    }
+}

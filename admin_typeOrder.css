@@ -1,0 +1,150 @@
+/* google font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
+@import url(./reset.css);
+
+body{
+    font-family: 'Noto Sans KR', sans-serif;  
+    text-align: center; 
+    height: 1200px;
+    font-size: larger;
+}
+
+.header{
+    position:relative;
+    /* background-color: aquamarine; */
+    display: flex;
+    height: 50px;
+    font-size: 2rem;
+}
+
+@media screen and (max-width: 1000px) {
+    .header{
+        width: 100%;
+        height: 130px;
+        text-align: center;
+    }
+    .header div{
+        width: 100%;
+    }
+    .box_links{
+        display: block;
+        top:50px;
+        right: 0;
+    }
+}
+
+.box_links{
+    position: absolute;
+    right:5%;
+    /* margin-left: 20px; */
+}
+
+h1{
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 50px 0;
+}
+.imgBox{
+    position: relative;
+    
+}
+
+.productImg{
+    width:60%;
+    padding: 0 20%;
+    object-fit: cover; 
+}
+.imgBox .imgCaption{
+    position:absolute;
+    right: 20%;
+    bottom: 10px;
+    text-align:end;
+    width: 20%;
+    /* left:40%; */
+}
+
+.imgBox .imgCaption h4,h6{
+    margin: 0px;
+}
+.imgBox .imgCaption h6{
+    color: rgb(40, 40, 40);
+    opacity: 0.8;
+}
+
+#priceTag{
+    position: fixed;
+    top:100px;
+    left:10%;
+    text-align: left;
+    z-index: 20;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#btn_submit{
+    margin-top: 40px;
+    /* margin-bottom: 150px; */
+}
+#orderBox{
+    margin-bottom: 5px;
+}
+label{
+    font-weight: 700;
+}
+
+input{
+    margin : 10px 0;
+}
+select{
+    margin : 10px 0;
+}
+h5{
+    font-size: 0.8rem;
+}
+#result h4,p{
+    margin : 10px 0px;
+}
+
+@media screen and (max-width: 600px) {
+
+    .imgBox .imgCaption h4,h6{
+        font-size: 0.5rem;
+    }
+}
+
+
+
+.orderList input{
+    width: 30px;
+}
+.orderList input:last-child{
+    width: auto;
+}
+
+#newOrder{
+   margin: 400px auto;
+}
+
+
+
+.sendBox{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.rcvBox{
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+}
+.block{
+    display: block;
+}
+@media screen and (min-width: 1000px) {
+    #orderBox{
+        width: 60%;
+        margin: auto;
+    }
+    
+}

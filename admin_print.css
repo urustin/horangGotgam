@@ -140,6 +140,7 @@ body{
     background-color:rgba(10,10,250,0.1)
 }
 
+
 .header{
     position:relative;
     /* background-color: aquamarine; */
@@ -149,10 +150,18 @@ body{
 }
 
 .box_links{
-    position: absolute;
-    right:5%;
+    margin-left: auto;
+    margin-right : 5%;
+    /* right:5%; */
     /* margin-left: 20px; */
 }
+
+@media screen and (max-width: 600px) {
+    .header{
+        display: block;
+    }
+}
+
 
 .container_top{
     /* background-color: gray; */
@@ -198,28 +207,7 @@ body{
 }
 
 @media print { 
-    @page {
-        size: landscape; /* Set the page to landscape orientation */
-        margin: 10mm; /* Adjust the margin as needed */
-    }
     
-    html {
-        
-        width: 100%; /* Use the full width of the page */
-        height: 100%; 
-        margin: 0;
-        padding: 0;
-        overflow: visible; /* Ensure the scaled content is not clipped */
-        column-count: 2;
-    }
-
-
-    .container_body {
-        transform: scale(0.5); /* Scale the content to fit half the page width */
-        transform-origin: left center; /* Scale from the left center */
-        width: 200%; /* Double the width to maintain the original layout after scaling */
-
-    }
 
     .container_controller{
         display: none;
