@@ -29,9 +29,9 @@ async function submitOrder() {
         };
         console.log(orderData);        
         // global
-        // const response = await fetch('https://ec2.flaresolution.com/submit-order-durup', {
+        const response = await fetch('https://ec2.flaresolution.com/submit-order-durup', {
         // local
-        const response = await fetch('http://localhost:5008/submit-order-durup', {
+        // const response = await fetch('http://localhost:5008/submit-order-durup', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
