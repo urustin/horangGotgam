@@ -203,7 +203,7 @@ function stopLoadingAnimation() {
 // newOrder
 
 function newOrder(){
-    let answer = window.confirm("새 주문을 시작하시겠습니까? 기존 주문 정보는 다음 날부터 조회가능합니다!")
+    let answer = window.confirm("새 주문을 시작하시겠습니까?")
     if(answer){
         location.reload();
     }else{

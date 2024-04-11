@@ -60,8 +60,6 @@ function copy_bankInfo() {
     navigator.clipboard.writeText(copyText).then(function(){
         alert( copyText +  "\n가 복사되었습니다!");
     })
-
-
 }
 
 
