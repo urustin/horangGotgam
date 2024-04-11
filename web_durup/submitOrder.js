@@ -14,7 +14,7 @@ async function submitOrder() {
             sheetName: "설문지 응답",
             product1: document.querySelector("#product1").value==="0"?"":document.querySelector("#product1").value,
             product2: document.querySelector("#product2").value==="0"?"":document.querySelector("#product2").value,
-            product3: document.querySelector("#product3").value==="0"?"":document.querySelector("#product3").value,
+
             // product4: document.querySelector("#product4").value==="0"?"":document.querySelector("#product4").value,
             // product5: document.querySelector("#product5").value==="0"?"":document.querySelector("#product5").value,
             productEtc: "",
@@ -53,6 +53,16 @@ async function submitOrder() {
 }
 
 
+// copy phone
+function copy_phone() {
+
+    const copyText = "010-9060-9281";
+    navigator.clipboard.writeText(copyText).then(function(){
+        alert( copyText +  "\n가 복사되었습니다!");
+    })
+}
+
+
 // copy bank info
 function copy_bankInfo() {
 
@@ -60,8 +70,6 @@ function copy_bankInfo() {
     navigator.clipboard.writeText(copyText).then(function(){
         alert( copyText +  "\n가 복사되었습니다!");
     })
-
-
 }
 
 
@@ -70,12 +78,12 @@ function reviewOrder(){
     const orderReview = document.querySelector(".orderReview");
     const product1 = document.querySelector("#product1").value;
     const product2 = document.querySelector("#product2").value;
-    const product3 = document.querySelector("#product3").value;
+
     // const product4 = document.querySelector("#product4").value;
     // const product5 = document.querySelector("#product5").value;
-    let price = calculate_price(product1,product2,product3);
+    let price = calculate_price(product1,product2);
 
-    const orderList = [product1,product2,product3];
+    const orderList = [product1,product2];
     let orderListString ="";
 
     orderList.map((item,idx)=>{
@@ -114,10 +122,10 @@ function reviewOrder(){
 }
 
 
-function calculate_price(item1,item2,item3){
+function calculate_price(item1,item2){
     let price =0;
-    price = (item1*20000)+(item2*25000)+(item3*30000);
-    if(price<=50000){
+    price = (item1*25000)+(item2*15000);
+    if(price<50000){
         price+=4000;
     }
     return price;
@@ -148,25 +156,25 @@ function update_price(){
     
     let product1 = document.querySelector("#product1").value;
     let product2 = document.querySelector("#product2").value;
-    let product3 = document.querySelector("#product3").value;
+
     // let product4 = document.querySelector("#product4").value;
     // let product5 = document.querySelector("#product5").value;
     const priceTag = document.querySelector("#priceTag");
     if(priceTag.classList.contains("none")){
         priceTag.classList.remove("none");
     }
-    priceTag.innerHTML = "현재 금액 = "+ calculate_price(product1,product2,product3).toLocaleString() +"원<br>(50000원 이하<br>택배비 4000원)";
+    priceTag.innerHTML = "현재 금액 = "+ calculate_price(product1,product2).toLocaleString() +"원<br>(50000원 미만<br>택배비 4000원)";
 }
 
 let product1 = document.querySelector("#product1");
 let product2 = document.querySelector("#product2");
-let product3 = document.querySelector("#product3");
+
 // let product4 = document.querySelector("#product4");
 // let product5 = document.querySelector("#product5");
 
 product1.addEventListener("oninput",update_price);
 product2.addEventListener("oninput",update_price);
-product3.addEventListener("oninput",update_price);
+
 // product4.addEventListener("oninput",update_price);
 
 

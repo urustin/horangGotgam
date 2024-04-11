@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="kr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,14 +46,14 @@
             <img class="productImg" src="./images/products/product1.jpeg" alt="" srcset="">
             <img class="productImg" src="./images/products/5.jpg" alt="" srcset="">
             <div class="imgCaption">
-                <h4>1. 산두릅(참두릅) 본품</h4>
-                <h4>1kg, 25000원</h4>
-                <h4>5만원 이상 택배비 면제입니다!</h4>
+                <h2>1. 산두릅(참두릅) 본품</h2>
+                <h2>1kg, 25000원</h2>
+                <h2>5만원 이상 택배비 면제입니다!</h2>
                 <!-- <h6>(시중 소비자가 42,000원)</h6> -->
             </div>
         </div>
         <label for="product1"></label>
-        <select id="product1" name="product1" oninput="update_price()">
+        <select id="product1" name="product1" oninput="update_price()" style="font-size: 1.7rem;">
             <option value="0" disabled selected>주문량</option>
             <option value="1">1kg</option>
             <option value="2">2kg</option>
@@ -78,14 +78,14 @@
             <img class="productImg" src="./images/products/product2.jpeg" alt="" srcset="">
             <img class="productImg" src="./images/products/3.jpg" alt="" srcset="">
             <div class="imgCaption">
-                <h4>2. 곁순두릅(장아찌용 작은사이즈)</h4>
-                <h4>1KG 15000원</h4>
-                <h4>2KG부터 주문가능합니다!</h4>
+                <h2>2. 곁순두릅(장아찌용 작은사이즈)</h2>
+                <h2>1KG 15000원</h2>
+                <h2>2KG부터 주문가능합니다!</h2>
                 <!-- <h6>(시중 소비자가 58,000원)</h6> -->
             </div>
         </div>
         <label for="product2"></label>
-        <select id="product2" name="product2" oninput="update_price()">
+        <select id="product2" name="product2" oninput="update_price()" style="font-size: 1.7rem;">
             <!-- <option value="0" disabled selected>품절</option> -->
             <option value="0" disabled selected>주문량</option>
             <option value="2">2kg</option>
@@ -111,10 +111,10 @@
                 <h4 style="font-size: 2rem;">
                     고사리, 취나물도 판매합니다! 
                 </h4>
-                <h4 style="font-size: 1.5rem; font-weight: 300;">
+                <h4 style="font-size: 1.7rem;">
                     010-9060-9281
                 </h4>
-                <button><a href="tel:010-9060-9281">전화번호 복사하기</a></button>
+                <button onclick="copy_phone()">전화번호 복사하기</button>
                 
             </div>
             
