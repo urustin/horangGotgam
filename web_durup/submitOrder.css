@@ -154,3 +154,22 @@ select{
         width: 36%!important;
     }
 }
+
+
+/* gosari */
+.gosariBox{
+    margin-bottom: 40px;
+}
+
+
+.gosariBox .imageBox{
+    display: flex;
+    width: 70%;
+    margin: auto;
+}
+.gosariBox .imageBox img{
+    object-fit: cover;
+    width: 33%;
+    height: 200px;
+    margin:0.33%;
+}
