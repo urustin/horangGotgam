@@ -29,7 +29,7 @@ async function submitOrder() {
         };
         console.log(orderData);        
         // global
-        const response = await fetch('https://ec2.flaresolution.com/submit-order', {
+        const response = await fetch('https://ec2seoul.flaresolution.com/horang/submit-order', {
         // local
         // const response = await fetch('http://localhost:5008/submit-order', {
             method: 'POST',
@@ -241,8 +241,8 @@ function formatDate(dateString) {
 async function loadOrder() {
 
     try {
-        // const response = await fetch(`https://ec2.flaresolution.com/load-order`);
-        const response = await fetch(`http://localhost:5008/load-order`);
+        const response = await fetch(`https://ec2seoul.flaresolution.com/horang/load-order`);
+        // const response = await fetch(`http://localhost:5008/load-order`);
         const data = await response.json();
         console.log(data);
         
@@ -258,8 +258,16 @@ async function loadOrder() {
             reserveDateSelect.add(option);
         });
 
-        // document.querySelector("#currentYear").value = data.currentYear;
-        // document.querySelector("#orderAvailable").value = data.orderAvailable;
+        document.querySelector("#currentYear").innerHTML = data.currentYear;
+        document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
+        if(data.orderAvailable){
+            document.querySelector("#notify").innerHTML="";
+        }else{
+            document.querySelector(".box_description").innerHTML="";
+            document.querySelector("#orderBox").innerHTML="";
+            document.querySelector(".result").innerHTML="";
+        };
+        
         // document.querySelector("#startDate").value = data.startDate;
         // document.querySelector("#lastDate").value = data.lastDate;
 

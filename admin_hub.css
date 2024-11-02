@@ -2,9 +2,10 @@
 .header{
     position:relative;
     /* background-color: aquamarine; */
-    display: flex;
+    /* display: flex; */
     height: 50px;
     font-size: 2rem;
+    text-align: center;
 }
 
 .box_links{
@@ -12,6 +13,16 @@
     margin-right : 5%;
     /* right:5%; */
     /* margin-left: 20px; */
+}
+.box_links button{
+    font-size: 1rem;
+
+}
+.box_links button a:link{
+    text-decoration: none;
+}
+.box_links button a:hover{
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 600px) {

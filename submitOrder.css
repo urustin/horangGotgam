@@ -7,6 +7,12 @@ body{
     text-align: center; 
 }
 
+#notify1 h4{
+  margin-bottom: 10px;
+}
+#notify1 button{
+    margin-bottom: 30px;
+}
 h1{
     font-size: 2rem;
     font-weight: 700;

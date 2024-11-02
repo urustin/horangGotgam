@@ -4,13 +4,13 @@ let availableDates = [];
 async function loadOrder() {
 
     try {
-        // const response = await fetch(`https://ec2.flaresolution.com/load-order`);
-        const response = await fetch(`http://localhost:5008/load-order`);
+        const response = await fetch(`https://ec2seoul.flaresolution.com/horang/load-order`);
+        // const response = await fetch(`http://localhost:5008/load-order`);
         const data = await response.json();
         console.log(data);
 
         document.querySelector("#currentYear").value = data.currentYear;
-        document.querySelector("#orderAvailable").value = data.orderAvailable;
+        document.querySelector("#orderAvailable").value = data.orderAvailable==="true"?"예":"아니요";
         // document.querySelector("#startDate").value = data.startDate;
         // document.querySelector("#lastDate").value = data.lastDate;
         document.querySelector("#product1").value = data.product1;
@@ -67,7 +67,7 @@ async function updateOrder() {
 
         const updateOrder = {
             currentYear: document.querySelector("#currentYear").value,
-            orderAvailable: document.querySelector("#orderAvailable").value,
+            orderAvailable: document.querySelector("#orderAvailable").value==="예"?"true":"false",
             
             product1: document.querySelector("#product1").value,
             product2: document.querySelector("#product2").value,
@@ -77,9 +77,9 @@ async function updateOrder() {
 
         };    
         // global
-        // const response = await fetch('https://ec2.flaresolution.com/update-order', {
+        const response = await fetch('https://ec2seoul.flaresolution.com/horang/update-order', {
         // local
-        const response = await fetch('http://localhost:5008/update-order', {
+        // const response = await fetch('http://localhost:5008/update-order', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,6 +92,8 @@ async function updateOrder() {
         }
 
         const data = await response.json();
+        alert("업데이트 완료!");
+        window.location.reload();
         console.log(data);
 
 

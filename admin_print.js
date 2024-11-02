@@ -93,7 +93,7 @@ async function fetchData() {
         // const response = await fetch(`http://localhost:5008/get-all-data?formattedDate=${encodeURIComponent(formattedDate)}`);
 
         // global
-        const response = await fetch(`https://ec2.flaresolution.com/get-all-data?formattedDate=${encodeURIComponent(formattedDate)}`);        
+        const response = await fetch(`https://ec2seoul.flaresolution.com/horang/get-all-data?formattedDate=${encodeURIComponent(formattedDate)}`);        
         const data = await response.json();
 
         // console.log(data);

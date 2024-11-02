@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;400;700;900&display=swap');
 @import url(./reset.css);
 
+body{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+.header{
+    text-align: center;
+    margin-bottom: 50px;
+}
+
 .container_body{
     text-align: center;
     line-height: 1.7;
