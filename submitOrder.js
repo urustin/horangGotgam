@@ -261,7 +261,7 @@ async function loadOrder() {
         document.querySelector("#currentYear").innerHTML = data.currentYear;
         document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
 
-        if(data.orderAvailable==="false"){
+        if(data.orderAvailable==="true"){
             document.querySelector("#notify").innerHTML="";
         }else{
             document.querySelector(".box_description").innerHTML="";
