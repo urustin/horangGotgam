@@ -124,7 +124,7 @@ async function addDate() {
         
         // Then, send the updated list back to the server
         try {
-            const response = await fetch('http://localhost:5008/add-date', {
+            const response = await fetch('https://ec2seoul.flaresolution.com/horang/add-date', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -152,7 +152,7 @@ async function deleteDate(e,index) {
     // console.log(index);
     let date = [value,index];
     // 
-    const response = await fetch('http://localhost:5008/delete-date', {
+    const response = await fetch('https://ec2seoul.flaresolution.com/horang/delete-date', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
