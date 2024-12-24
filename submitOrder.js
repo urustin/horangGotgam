@@ -281,7 +281,7 @@ async function loadOrder() {
             let number = (`product${j}`);
 
             if(data[number]!=="0"){
-                document.querySelector(`#product${j}`).innerHTML = `<option value="0" disabled selected>갯수</option>`;
+                document.querySelector(`#product${j}`).innerHTML = `<option value="0" disabled selected>갯수</option><option value="0">0개</option>`;
                 let length = parseInt(data[number]);
                 for(let i=1;i<=length;i++){
                     console.log(i);
