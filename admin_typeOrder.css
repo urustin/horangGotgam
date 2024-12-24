@@ -17,21 +17,7 @@ body{
     font-size: 2rem;
 }
 
-@media screen and (max-width: 1000px) {
-    .header{
-        width: 100%;
-        height: 130px;
-        text-align: center;
-    }
-    .header div{
-        width: 100%;
-    }
-    .box_links{
-        display: block;
-        top:50px;
-        right: 0;
-    }
-}
+
 
 .box_links{
     position: absolute;
@@ -111,6 +97,7 @@ h5{
     .imgBox .imgCaption h4,h6{
         font-size: 0.5rem;
     }
+
 }
 
 
@@ -146,5 +133,30 @@ h5{
         width: 60%;
         margin: auto;
     }
-    
+
+}
+@media screen and (max-width: 1000px) {
+    .header{
+        width: 100%;
+        height: 130px;
+        text-align: center;
+    }
+    .header div{
+        width: 100%;
+    }
+    .box_links{
+        display: block;
+        top:50px;
+        right: 0;
+    }
+    .sendBox{
+        display: block;
+    }
+    .sendBox .block:nth-child(3){
+        display: none;
+    }
+    .rcvBox{
+        display: block;
+    }
+
 }
