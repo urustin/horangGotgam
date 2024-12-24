@@ -11,7 +11,7 @@ async function submitOrder() {
     try {
         startLoadingAnimation();
         const orderData = {
-            sheetName: "구글응답",
+            sheetName: "응답",
             product1: document.querySelector("#product1").value==="0"?"":document.querySelector("#product1").value,
             product2: document.querySelector("#product2").value==="0"?"":document.querySelector("#product2").value,
             product3: document.querySelector("#product3").value==="0"?"":document.querySelector("#product3").value,
