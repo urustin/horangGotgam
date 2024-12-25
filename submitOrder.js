@@ -252,7 +252,7 @@ async function loadOrder() {
         const reserveDateSelect = document.getElementById('reserve_date');
         
         // Clear existing options, except for the first disabled "날짜 선택하기" option
-        reserveDateSelect.length = 1; // Keep only the first option and remove the rest
+        reserveDateSelect.length = 2; // Keep only the first option and remove the rest
 
         // Populate the select with new options from availableDate array
         data.availableDate.forEach(date => {
