@@ -220,7 +220,10 @@ function validate_form(){
 
 function formatDate(dateString) {
     // 현재 연도를 가져옵니다.
-    const currentYear = new Date().getFullYear();
+    if(dateString ==="가능한 빨리(1월초 순차배송)"){
+        return "가능한빨리";
+    }
+    const currentYear = 2025;
 
     // 주어진 날짜 문자열에 현재 연도를 추가하여 Date 객체 생성
     const date = new Date(`${dateString}/${currentYear}`);
