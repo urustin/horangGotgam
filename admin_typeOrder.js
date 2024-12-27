@@ -3,7 +3,7 @@ async function submitOrder() {
     try {
         startLoadingAnimation();
         const orderData = {
-            sheetName: "판매대장",
+            sheetName: "응답",
             product1: document.querySelector("#product1").value,
             product2: document.querySelector("#product2").value,
             product3: document.querySelector("#product3").value,
@@ -125,7 +125,11 @@ function resetOrder(){
 
 function formatDate(dateString) {
     // 현재 연도를 가져옵니다.
-    const currentYear = new Date().getFullYear();
+    if(dateString ==="1/1"){
+        return "가능한빨리";
+    }
+    const currentYear = 2025;
+
 
     // 주어진 날짜 문자열에 현재 연도를 추가하여 Date 객체 생성
     const date = new Date(`${dateString}/${currentYear}`);
