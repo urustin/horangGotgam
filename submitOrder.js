@@ -244,7 +244,7 @@ function formatDate(dateString) {
 
 
 async function loadOrder() {
-
+    document.querySelector("#notify").innerHTML="";
     try {
         const response = await fetch(`https://ec2seoul.flaresolution.com/horang/load-order`);
         // const response = await fetch(`http://localhost:5008/load-order`);
@@ -266,13 +266,16 @@ async function loadOrder() {
         document.querySelector("#currentYear").innerHTML = data.currentYear;
         document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
 
-        if(data.orderAvailable==="true"){
-            document.querySelector("#notify").innerHTML="";
-        }else{
-            document.querySelector(".box_description").innerHTML="";
-            document.querySelector("#orderBox").innerHTML="";
-            document.querySelector(".result").innerHTML="";
-        };
+
+        // 마감 체크기능 임시삭제
+        // if(data.orderAvailable==="true"){
+        //     document.querySelector("#notify").innerHTML="";
+        // }else{
+        //     document.querySelector(".box_description").innerHTML="";
+        //     document.querySelector("#orderBox").innerHTML="";
+        //     document.querySelector(".result").innerHTML="";
+        // };
+        
         
         // document.querySelector("#startDate").value = data.startDate;
         // document.querySelector("#lastDate").value = data.lastDate;
