@@ -261,13 +261,15 @@ async function loadOrder() {
         data.availableDate.forEach(date => {
             const option = new Option(date, date); // Creating new option element with text and value set to 'date'
             reserveDateSelect.add(option);
-        });
 
-        document.querySelector("#currentYear").innerHTML = data.currentYear;
-        document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
+        });
+       
+        // document.querySelector("#currentYear").innerHTML = data.currentYear;
+        // document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
 
 
         // 마감 체크기능 임시삭제
+        // console.log("data="+data);
         // if(data.orderAvailable==="true"){
         //     document.querySelector("#notify").innerHTML="";
         // }else{
@@ -286,7 +288,7 @@ async function loadOrder() {
 
         // product quantity
         for(let j=1;j<6;j++){
-            let number = (`product${j}`);
+            let number = "product"+j;
 
             if(data[number]!=="0"){
                 document.querySelector(`#product${j}`).innerHTML = `<option value="0" disabled selected>갯수</option><option value="0">0개</option>`;
