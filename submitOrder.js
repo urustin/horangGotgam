@@ -5,64 +5,330 @@
 // set date as today
 // searchDate.valueAsDate = new Date();
 
-async function submitOrder() {
-    console.log(validate_form());
+// Product prices and configuration
+const PRODUCT_PRICES = {
+    gotgam: {
+        product1: 32000,
+        product2: 43000,
+        product3: 63000,
+        product4: 85000,
+        product5: 110000
+    },
+    durup: {
+        durup1: 25000,
+        durup2: 15000
+    }
+};
 
-    try {
-        startLoadingAnimation();
-        const orderData = {
-            sheetName: "응답",
-            product1: document.querySelector("#product1").value==="0"?"":document.querySelector("#product1").value,
-            product2: document.querySelector("#product2").value==="0"?"":document.querySelector("#product2").value,
-            product3: document.querySelector("#product3").value==="0"?"":document.querySelector("#product3").value,
-            product4: document.querySelector("#product4").value==="0"?"":document.querySelector("#product4").value,
-            product5: document.querySelector("#product5").value==="0"?"":document.querySelector("#product5").value,
-            productEtc: "",
-            send_name: document.querySelector("#send_name").value,
-            send_contact: document.querySelector("#send_contact").value.replaceAll("-",""),
-            rcv_name: document.querySelector("#rcv_name").value,
-            rcv_contact: document.querySelector("#rcv_contact").value.replaceAll("-",""),
-            rcv_address: document.querySelector("#rcv_address").value,
-            reserve_date: formatDate(document.querySelector("#reserve_date").value),
-            request_etc: document.querySelector("#request_etc").value,
-            request_delivery: document.querySelector("#request_delivery").value,
+const SHIPPING_THRESHOLD = 50000;
+const SHIPPING_FEE = 4000;
+
+// let current = 'gotgam'; // Current product type ('gotgam' or 'durup')
+const current = 'durup';
+const develop = false; // Set to false for production
+// const develop = true;
+
+// Get base URL based on environment
+function getBaseUrl() {
+    return develop ? 'http://localhost:5008' : 'https://ec2seoul.flaresolution.com/horang';
+}
+
+// Initialize the page
+document.addEventListener('DOMContentLoaded', function() {
+    // Set current year
+    const currentYear = new Date().getFullYear();
+    const nextYear = currentYear + 1;
+    
+    const currentYearElements = document.querySelectorAll('#currentYear');
+    const nextYearElements = document.querySelectorAll('#nextYear');
+    
+    currentYearElements.forEach(el => el.textContent = currentYear);
+    nextYearElements.forEach(el => el.textContent = nextYear);
+
+    // Initialize menu based on current value
+    ['intro', 'desc', 'products'].forEach(section => {
+        document.getElementById(`gotgam_${section}`).style.display = current === 'gotgam' ? 'block' : 'none';
+        document.getElementById(`durup_${section}`).style.display = current === 'durup' ? 'block' : 'none';
+    });
+    
+    // Show/hide date selector (only for gotgam)
+    document.getElementById('gotgam_date').style.display = current === 'gotgam' ? 'block' : 'none';
+    
+    // Update required fields
+    const reserveDateSelect = document.getElementById('reserve_date');
+    if (reserveDateSelect) {
+        reserveDateSelect.required = current === 'gotgam';
+    }
+
+    // Initial price update
+    update_price();
+    
+    // Load available dates for gotgam
+    if (current === 'gotgam') {
+        loadOrder();
+    }
+});
+
+// Calculate total price
+function calculate_total() {
+    let total = 0;
+    
+    if (current === 'gotgam') {
+        // Calculate gotgam products
+        for (let i = 1; i <= 5; i++) {
+            const select = document.getElementById(`product${i}`);
+            if (select && select.value) {
+                total += PRODUCT_PRICES.gotgam[`product${i}`] * parseInt(select.value);
+            }
+        }
+    } else {
+        // Calculate durup products
+        for (let i = 1; i <= 2; i++) {
+            const select = document.getElementById(`durup${i}`);
+            if (select && select.value) {
+                total += PRODUCT_PRICES.durup[`durup${i}`] * parseInt(select.value);
+            }
+        }
+    }
+    
+    // Add shipping fee if total is below threshold
+    if (total > 0 && total < SHIPPING_THRESHOLD) {
+        total += SHIPPING_FEE;
+    }
+    
+    return total;
+}
+
+// Update price display
+function update_price() {
+    const total = calculate_total();
+    const priceTag = document.getElementById('priceTag');
+    
+    if (total > 0) {
+        priceTag.classList.remove('none');
+        priceTag.innerHTML = `현재 금액 : ${total.toLocaleString()}원<br>` +
+            (total < SHIPPING_THRESHOLD ? `(${SHIPPING_THRESHOLD.toLocaleString()}원 이하<br>택배비 ${SHIPPING_FEE.toLocaleString()}원)` : '');
+    } else {
+        priceTag.classList.add('none');
+    }
+    
+    update_summary();
+}
+
+// Update order summary
+function update_summary() {
+    const summaryDiv = document.querySelector('.summary_order');
+    let summary = '';
+    
+    if (current === 'gotgam') {
+        // Gotgam summary
+        for (let i = 1; i <= 5; i++) {
+            const select = document.getElementById(`product${i}`);
+            if (select && select.value && select.value !== '0') {
+                summary += `${i}호 : ${select.value}개<br>`;
+            }
+        }
+    } else {
+        // Durup summary
+        const durupTypes = {
+            durup1: '산두릅(참두릅)',
+            durup2: '곁순두릅(장아찌용)'
         };
-        console.log(orderData);        
-        // global
-        const response = await fetch('https://ec2seoul.flaresolution.com/horang/submit-order', {
-        // local
-        // const response = await fetch('http://localhost:5008/submit-order', {
+        
+        for (let i = 1; i <= 2; i++) {
+            const select = document.getElementById(`durup${i}`);
+            if (select && select.value && select.value !== '0') {
+                summary += `${durupTypes[`durup${i}`]} : ${select.value}kg<br>`;
+            }
+        }
+    }
+    
+    if (summary) {
+        const total = calculate_total();
+        summary += `<br>총 금액: ${total.toLocaleString()}원`;
+        if (total < SHIPPING_THRESHOLD) {
+            summary += `<br>(배송비 ${SHIPPING_FEE.toLocaleString()}원 포함)`;
+        }
+    }
+    
+    summaryDiv.innerHTML = summary;
+}
+
+// Form submission
+async function submitOrder() {
+    const form = document.getElementById('orderForm');
+    const loading = document.getElementById('loading');
+    
+    if (!form.checkValidity()) {
+        return;
+    }
+    
+    // Add confirmation dialog
+    const confirmed = window.confirm("주문을 제출하시겠습니까?");
+    if (!confirmed) {
+        return;
+    }
+    
+    loading.style.display = 'block';
+    
+    try {
+        const formData = {
+            productType: current,
+            sheetName: current === 'gotgam' ? '응답' : '설문지 응답',
+            orderDate: new Date().toISOString(),
+            reserveDate: current === 'gotgam' ? document.getElementById('reserve_date').value : '즉시배송',
+            send_name: document.getElementById('send_name').value,
+            send_contact: document.getElementById('send_contact').value.replaceAll("-", ""),
+            rcv_name: document.getElementById('rcv_name').value,
+            rcv_contact: document.getElementById('rcv_contact').value.replaceAll("-", ""),
+            rcv_address: document.getElementById('rcv_address').value,
+            request_etc: document.getElementById('request_etc').value,
+            request_delivery: document.getElementById('request_delivery').value
+        };
+        
+        // Add product quantities based on product type
+        if (current === 'gotgam') {
+            for (let i = 1; i <= 5; i++) {
+                formData[`product${i}`] = document.getElementById(`product${i}`).value === "0" ? "" : document.getElementById(`product${i}`).value;
+            }
+        } else {
+            for (let i = 1; i <= 2; i++) {
+                formData[`durup${i}`] = document.getElementById(`durup${i}`).value === "0" ? "" : document.getElementById(`durup${i}`).value;
+            }
+        }
+        
+        formData.totalAmount = calculate_total();
+        
+        // Choose the appropriate endpoint based on product type and environment
+        const endpoint = `${getBaseUrl()}${current === 'gotgam' ? '/submit-order' : '/submit-order-durup'}`;
+        
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(orderData),
+            body: JSON.stringify(formData)
         });
-
-        const data = await response.json();
-        console.log(data);
-
-        hiddenOrder()
-        const result = document.querySelector("#result");
-        result.style.display = "block";
-        stopLoadingAnimation();
+        
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        
+        showOrderResult(formData);
     } catch (error) {
-        stopLoadingAnimation();
         console.error('Error:', error);
+        alert('주문 접수 중 오류가 발생했습니다. 다시 시도해주세요.');
+    } finally {
+        loading.style.display = 'none';
     }
 }
 
-
-// copy bank info
-function copy_bankInfo() {
-
-    const copyText = "농협 352-1386-3306-83";
-    navigator.clipboard.writeText(copyText).then(function(){
-        alert( copyText +  "\n가 복사되었습니다!");
-    })
+// Show order result
+function showOrderResult(formData) {
+    document.getElementById('intro').style.display = 'none';
+    document.getElementById('orderBox').style.display = 'none';
+    document.getElementById('result').style.display = 'block';
+    
+    document.getElementById('totalFee').textContent = 
+        `입금하실 금액 : ${formData.totalAmount.toLocaleString()}원`;
+    
+    let orderDetails = '';
+    if (current === 'gotgam') {
+        for (let i = 1; i <= 5; i++) {
+            if (formData[`product${i}`]) {
+                orderDetails += `${i}호 : ${formData[`product${i}`]}개<br>`;
+            }
+        }
+        orderDetails += `<br>발송일 : ${formData.reserveDate}`;
+    } else {
+        const durupTypes = {
+            durup1: '산두릅(참두릅)',
+            durup2: '곁순두릅(장아찌용)'
+        };
+        for (let i = 1; i <= 2; i++) {
+            if (formData[`durup${i}`]) {
+                orderDetails += `${durupTypes[`durup${i}`]} : ${formData[`durup${i}`]}kg<br>`;
+            }
+        }
+    }
+    
+    orderDetails += `<br>받는분 : ${formData.rcv_name}<br>`;
+    orderDetails += `연락처 : ${formData.rcv_contact}<br>`;
+    orderDetails += `주소 : ${formData.rcv_address}<br>`;
+    
+    if (formData.request_etc) {
+        orderDetails += `<br>해청농원 요청사항 : ${formData.request_etc}<br>`;
+    }
+    if (formData.request_delivery) {
+        orderDetails += `택배사 요청사항 : ${formData.request_delivery}`;
+    }
+    
+    document.querySelector('.orderReview').innerHTML = orderDetails;
 }
 
+// Helper functions
+function copy_bankInfo() {
+    const bankInfo = "농협 352-1386-3306-83 이광호";
+    navigator.clipboard.writeText(bankInfo)
+        .then(() => alert('계좌번호가 복사되었습니다!'))
+        .catch(err => console.error('복사 실패:', err));
+}
 
+function copy_phone() {
+    const phone = "01090609281";
+    navigator.clipboard.writeText(phone)
+        .then(() => alert('전화번호가 복사되었습니다!'))
+        .catch(err => console.error('복사 실패:', err));
+}
+
+function newOrder() {
+    document.getElementById('orderBox').style.display = 'block';
+    document.getElementById('result').style.display = 'none';
+    document.getElementById('orderForm').reset();
+    update_price();
+}
+
+// Load available dates and product quantities for gotgam
+async function loadOrder() {
+    document.querySelector("#notify").innerHTML = "";
+    try {
+        const response = await fetch(`${getBaseUrl()}/load-order`);
+        const data = await response.json();
+        
+        // Update available dates
+        const reserveDateSelect = document.getElementById('reserve_date');
+        if (reserveDateSelect && data.availableDate) {
+            // Clear existing options except the first one
+            reserveDateSelect.length = 2;
+            
+            // Add new date options
+            data.availableDate.forEach(date => {
+                const option = new Option(date, date);
+                reserveDateSelect.add(option);
+            });
+        }
+        
+        // Update product quantities
+        if (data) {
+            for (let i = 1; i <= 5; i++) {
+                const select = document.getElementById(`product${i}`);
+                if (select) {
+                    if (data[`product${i}`] !== "0") {
+                        select.innerHTML = '<option value="0" disabled selected>갯수</option><option value="0">0개</option>';
+                        const length = parseInt(data[`product${i}`]);
+                        for (let j = 1; j <= length; j++) {
+                            select.innerHTML += `<option value=${j}>${j}개</option>`;
+                        }
+                    } else {
+                        select.innerHTML = '<option value="0" disabled selected>품절</option>';
+                    }
+                }
+            }
+        }
+    } catch (error) {
+        console.error('Error loading order data:', error);
+    }
+}
 
 function reviewOrder(){
     const orderReview = document.querySelector(".orderReview");
@@ -114,7 +380,6 @@ function reviewOrder(){
     
 }
 
-
 function calculate_price(item1,item2,item3,item4,item5){
     let price =0;
     price = (item1*32000)+(item2*43000)+(item3*63000)+(item4*85000)+(item5*110000);
@@ -123,7 +388,6 @@ function calculate_price(item1,item2,item3,item4,item5){
     }
     return price;
 }
-
 
 // submit-> reset
 function hiddenOrder(){
@@ -141,24 +405,6 @@ function hiddenOrder(){
 
 }
 
-
-
-
-// update price
-function update_price(){
-    
-    let product1 = document.querySelector("#product1").value;
-    let product2 = document.querySelector("#product2").value;
-    let product3 = document.querySelector("#product3").value;
-    let product4 = document.querySelector("#product4").value;
-    let product5 = document.querySelector("#product5").value;
-    const priceTag = document.querySelector("#priceTag");
-    if(priceTag.classList.contains("none")){
-        priceTag.classList.remove("none");
-    }
-    priceTag.innerHTML = "현재 금액 = "+ calculate_price(product1,product2,product3,product4,product5).toLocaleString() +"원<br>(50000원 이하<br>택배비 4000원)";
-}
-
 let product1 = document.querySelector("#product1");
 let product2 = document.querySelector("#product2");
 let product3 = document.querySelector("#product3");
@@ -169,8 +415,6 @@ product1.addEventListener("oninput",update_price);
 product2.addEventListener("oninput",update_price);
 product3.addEventListener("oninput",update_price);
 product4.addEventListener("oninput",update_price);
-
-
 
 // loading
 
@@ -194,7 +438,6 @@ function stopLoadingAnimation() {
     }
 }
 
-
 // newOrder
 
 function newOrder(){
@@ -205,8 +448,6 @@ function newOrder(){
 
     }
 }
-
-
 
 function validate_form(){
     
@@ -236,88 +477,3 @@ function formatDate(dateString) {
 
     return formattedDate;
 }
-
-
-
-
-// load order
-
-
-async function loadOrder() {
-    document.querySelector("#notify").innerHTML="";
-    try {
-        const response = await fetch(`https://ec2seoul.flaresolution.com/horang/load-order`);
-        // const response = await fetch(`http://localhost:5008/load-order`);
-        const data = await response.json();
-        console.log(data);
-        
-
-        const reserveDateSelect = document.getElementById('reserve_date');
-        
-        // Clear existing options, except for the first disabled "날짜 선택하기" option
-        reserveDateSelect.length = 2; // Keep only the first option and remove the rest
-
-        // Populate the select with new options from availableDate array
-        data.availableDate.forEach(date => {
-            const option = new Option(date, date); // Creating new option element with text and value set to 'date'
-            reserveDateSelect.add(option);
-
-        });
-       
-        // document.querySelector("#currentYear").innerHTML = data.currentYear;
-        // document.querySelector("#nextYear").innerHTML = parseInt(data.currentYear)+1;
-
-
-        // 마감 체크기능 임시삭제
-        // console.log("data="+data);
-        // if(data.orderAvailable==="true"){
-        //     document.querySelector("#notify").innerHTML="";
-        // }else{
-        //     document.querySelector(".box_description").innerHTML="";
-        //     document.querySelector("#orderBox").innerHTML="";
-        //     document.querySelector(".result").innerHTML="";
-        // };
-        
-        
-        // document.querySelector("#startDate").value = data.startDate;
-        // document.querySelector("#lastDate").value = data.lastDate;
-
-
-
-
-
-        // product quantity
-        for(let j=1;j<6;j++){
-            let number = "product"+j;
-
-            if(data[number]!=="0"){
-                document.querySelector(`#product${j}`).innerHTML = `<option value="0" disabled selected>갯수</option><option value="0">0개</option>`;
-                let length = parseInt(data[number]);
-                for(let i=1;i<=length;i++){
-                    console.log(i);
-                    document.querySelector(`#product${j}`).innerHTML+=(`<option value=${i}>${i}개</option>`);
-                }
-            }else{
-                document.querySelector(`#product${j}`).innerHTML = `<option value="0" disabled selected>품절</option>`;
-            };
-        }
-
-
-        
-
-        
-        // document.querySelector("#product2").value = data.product2;
-        // document.querySelector("#product3").value = data.product3;
-        // document.querySelector("#product4").value = data.product4;
-        // document.querySelector("#product5").value = data.product5;
-    
-        
-    }
-    catch(error){
-        // console.error('Error:', error);
-        console.log(`Error: ${error.message}`);
-    }
-}
-
-loadOrder();
-

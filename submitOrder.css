@@ -7,16 +7,16 @@ body{
     text-align: center; 
 }
 
-#notify1 h4{
-  margin-bottom: 10px;
-}
-#notify1 button{
-    margin-bottom: 30px;
-}
 h1{
     font-size: 2rem;
     font-weight: 700;
     margin: 50px 0;
+}
+h2{
+    font-size: 1.7rem;
+}
+h4{
+    font-size: 1.4rem;
 }
 .imgBox{
     position: relative;
@@ -33,10 +33,19 @@ h1{
 .box_description{
     line-height: 1.5;
 }
+
 .box_description button{
     margin: 3px;
 }
 
+.box_description .img1{
+    width: 80%;
+}
+
+.box_description .img2{
+    width: 80%;
+    object-fit: contain;
+}
 
 .box_reserve_date{
     line-height: 1.5;
@@ -57,12 +66,18 @@ h1{
     }
 }
 .imgBox .imgCaption{
-    position:absolute;
-    right: 20%;
-    bottom: 10px;
-    text-align:end;
-    width: 20%;
+    /* position:absolute; */
+    /* right: 20%; */
+    /* bottom: 10px; */
+    /* text-align:end; */
+    line-height: 1.4;
+    width: 80%;
+    margin:20px auto;
+    /* background-color: red; */
     /* left:40%; */
+}
+.imgBox .imgCaption h2:nth-child(1){
+    font-weight: 700;
 }
 
 .imgBox .imgCaption h4,h6{
@@ -71,6 +86,9 @@ h1{
 .imgBox .imgCaption h6{
     color: rgb(40, 40, 40);
     opacity: 0.8;
+}
+select{
+    margin-bottom: 35px;
 }
 
 #priceTag{
@@ -101,20 +119,25 @@ h1{
     margin-bottom: 150px;
 }
 label{
+    font-size: 1.5rem;
+    /* margin : 0 80px; */
     font-weight: 700;
 }
 
 input{
+    font-size: 1.2rem;
     margin : 10px 0;
 }
 select{
-    margin : 10px 0;
+    /* margin : 10px 0; */
 }
 h5{
     font-size: 0.8rem;
 }
 #result{
     line-height: 1.5;
+    margin-top : 40px;
+    padding-bottom: 100px;
 }
 #result h4,p{
     margin : 10px 0px;
@@ -127,9 +150,40 @@ h5{
 
     .imgBox .imgCaption h4,h6{
         font-size: 0.9rem;
+        
     }
 }
 
 select{
     font-size: 20px;
+}
+
+
+
+@media screen and (min-width: 1200px) {
+    img{
+        width: 36%!important;
+    }
+}
+
+
+/* gosari */
+.gosariBox{
+    margin-bottom: 40px;
+}
+
+
+.gosariBox .imageBox{
+    display: flex;
+    width: 70%;
+    margin: auto;
+}
+.gosariBox .imageBox img{
+    object-fit: cover;
+    width: 33%;
+    height: 200px;
+    margin:0.33%;
+}
+.summary_order{
+    margin-bottom: 40px;
 }
