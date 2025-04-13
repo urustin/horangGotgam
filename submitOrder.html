@@ -32,14 +32,8 @@
             <p style="line-height: 1.5; width: 90%; margin: 10px auto; font-size: 1.2rem;">
                 지리산 골짜기 산자락<br>
                 맑은 공기 머금고 자라난 산두릅.<br>
-                <br>
-                가장 부드럽고 맛있는 때를 놓치지 않기 위해<br>
-                온종일 산기슭 오르내리며<br>
-                하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
-                재배가 아닌 야생 두릅이라<br>
-                다양한 품종이 섞여있으며<br>
-                어디서도 드셔보시지 못한 향을 자부합니다.<br>
             </p>
+            
         </div>
 
         <div class="box_description">
@@ -54,22 +48,35 @@
                     <button><a href="./checkOrder.html">주문 확인</a></button>
                 </h4>
             </div>
-
             <!-- 두릅 설명 -->
             <div id="durup_desc" class="product_desc" style="display: none;">
-                <img class="img1" src="./images/durup/1.jpg" alt="">
-                <h4 style="font-weight: 700;">최고 부드럽고 맛난 지리산 산두릅 (참두릅) 😉👍</h4>
+                <img class="img1" src="./images/durup/1_1.jpg" alt="">
+                <p class="dsc">
+                    가장 부드럽고 맛있는 때를 놓치지 않기 위해<br>
+                    농장주가 직접 온종일 산기슭 오르내리며<br>
+                    하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
+                </p>
+                <img class="img2" src="./images/durup/1_2.jpg" alt="">
+                <p class="dsc">
+                    재배가 아닌 야생 두릅이라 다양한 품종이 섞여있으며<br>
+                    어디서도 드셔보시지 못한 향을 자부합니다.<br>
+                </p>
+                
+                
+                <!-- <h3 style="font-weight: 700;">최고 부드럽고 맛난 지리산 산두릅 (참두릅) 😉👍</h3> -->
             </div>
 
+
+            
             <!-- 공통 설명 -->
-            <h4>
+            <h3>
                 대량 주문이나 기타 문의사항은 카톡으로 연락주세요!
                 <button><a href="http://pf.kakao.com/_INxgzxb">해청농원 카카오톡</a></button>
-            </h4>
-            <h4>
+            </h3>
+            <h3>
                 입금 계좌를 확인/복사하시려면 눌러주세요!
                 <button><a href="./bankAccount.html">입금계좌 확인/복사하기</a></button>
-            </h4>
+            </h3>
         </div>
     </div>
     <div id="orderBox">
@@ -148,12 +155,12 @@
             <div id="durup_products" class="product_list" style="display: none;">
                 <!-- 산두릅 -->
                 <div class="imgBox">
-                    <img class="productImg" src="./images/durup/product1.jpeg" alt="">
-                    <img class="productImg" src="./images/durup/5.jpg" alt="">
+                    <img class="productImg" src="./images/durup/big_1.jpeg" alt="">
+                    <img class="productImg" src="./images/durup/big_2.jpeg" alt="">
                     <div class="imgCaption">
                         <h2>1. 산두릅(참두릅) 본품</h2>
                         <h2>1kg, 25000원</h2>
-                        <h2>5만원 이상 택배비 면제입니다!</h2>
+                        <h2>5만원 이상 <span style="font-weight: bold;">택배비 면제</span>입니다!</h2>
                     </div>
                 </div>
                 <select id="durup1" name="durup1" oninput="update_price()" style="font-size: 1.7rem;">
@@ -170,12 +177,12 @@
                     <option value="10">10kg</option>
                 </select>
 
-                <div style="border-bottom: 3px solid black; width: 80%; margin: auto;"></div>
+
 
                 <!-- 곁순두릅 -->
                 <div class="imgBox">
-                    <img class="productImg" src="./images/durup/product2.jpeg" alt="">
-                    <img class="productImg" src="./images/durup/3.jpg" alt="">
+                    <img class="productImg" src="./images/durup/small_1.jpeg" alt="">
+                    <img class="productImg" src="./images/durup/small_2.jpeg" alt="">
                     <div class="imgCaption">
                         <h2>2. 곁순두릅(장아찌용 작은사이즈)</h2>
                         <h2>1KG 15000원</h2>
@@ -203,10 +210,10 @@
                             <img src="./images/durup/gosari2.jpeg" alt="">
                             <img src="./images/durup/gosari3.jpeg" alt="">
                         </div>
-                        <h4 style="font-size: 2rem;">
-                            고사리, 취나물도 판매합니다! 
+                        <h4 style="font-size: 1.5rem;">
+                            고사리, 취나물, 옻순도 판매합니다! 
                         </h4>
-                        <h4 style="font-size: 1.7rem;">
+                        <h4 style="font-size: 1.3rem;">
                             010-9060-9281
                         </h4>
                         <button onclick="copy_phone()">전화번호 복사하기</button>
@@ -263,6 +270,17 @@
                 <input type="text" id="request_delivery" name="request_delivery">
                 <br>
             </div>
+            <p id="gotgam_outro">
+
+            </p>
+            <p id="durup_outro" class="dsc" style="display: none;">
+                예약 주문후 입금하시면 준비되는대로 순차적으로 발송해드립니다<br>
+                기다림에 보답하는 맘으로<br>
+                가장 신선한 상태로 받으실수 있도록 최선을 다하겠습니다<br>
+                ♡♡해청농원♡♡<br>
+                감사합니다
+            </p>
+
 
             <button id="btn_submit" type="submit">주문하기</button>
             <div id="loading" style="display: block;"></div>

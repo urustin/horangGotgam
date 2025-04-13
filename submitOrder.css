@@ -56,6 +56,7 @@ h4{
 .productImg{
     width:60%;
     padding: 0 20%;
+    margin: -1px;
     object-fit: cover; 
 }
 @media screen and (max-width: 600px) {
@@ -63,7 +64,12 @@ h4{
     .productImg{
         width: 100%;
         padding: 0;
+        margin: -1px;
     }
+}
+
+.product_list{
+    margin-top :20px;
 }
 .imgBox .imgCaption{
     /* position:absolute; */
@@ -112,7 +118,7 @@ select{
 }
 
 #btn_submit{
-    margin-top: 40px;
+    margin-top: 20px;
     /* margin-bottom: 150px; */
 }
 #orderBox{
@@ -144,6 +150,12 @@ h5{
 }
 .none{
     display: none;
+}
+.dsc{
+    line-height: 1.5; 
+    width: 90%; 
+    margin: 10px auto; 
+    font-size: 1.0rem;
 }
 
 @media screen and (max-width: 600px) {

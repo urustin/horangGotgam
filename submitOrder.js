@@ -23,8 +23,9 @@ const PRODUCT_PRICES = {
 const SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 4000;
 
-// let current = 'gotgam'; // Current product type ('gotgam' or 'durup')
+// const current = 'gotgam'; // Current product type ('gotgam' or 'durup')
 const current = 'durup';
+
 const develop = false; // Set to false for production
 // const develop = true;
 
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
     nextYearElements.forEach(el => el.textContent = nextYear);
 
     // Initialize menu based on current value
-    ['intro', 'desc', 'products'].forEach(section => {
+    ['intro', 'desc', 'products','outro'].forEach(section => {
         document.getElementById(`gotgam_${section}`).style.display = current === 'gotgam' ? 'block' : 'none';
         document.getElementById(`durup_${section}`).style.display = current === 'durup' ? 'block' : 'none';
     });
