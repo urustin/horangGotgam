@@ -23,8 +23,8 @@ const PRODUCT_PRICES = {
 const SHIPPING_THRESHOLD = 50000;
 const SHIPPING_FEE = 4000;
 
-// const current = 'gotgam'; // Current product type ('gotgam' or 'durup')
-const current = 'durup';
+const current = 'gotgam'; // Current product type ('gotgam' or 'durup')
+// const current = 'durup';
 
 const develop = false; // Set to false for production
 // const develop = true;
