@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호랑곶감 관리자 페이지</title>
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/pages/admin/control-menu.css">
+</head>
+<body>
+    <div class="header">
+        <div>호랑곶감 관리자 페이지 - 메뉴 관리</div>
+        <div class="box_links">
+            <button><a href="./print.html">포장리스트 출력</a></button>
+            <button><a href="./typeOrder.html">주문 입력하기</a></button>
+            <button><a href="./controlMenu.html">메뉴 관리</a></button>
+            <button><a href="./hub.html">허브</a></button>
+        </div>
+    </div>
+    <div class="container_body">
+        <!-- <button class="btn_submit" onclick="loadOrder()">불러오기</button> -->
+        <label for="currentYear">올해 연도</label>
+        <br>
+        <input type="text" id="currentYear" name="currentYear">
+        <br>
+        <label for="orderAvailable">주문가능여부(예/아니오)</label>
+        <br>
+        <input type="text" id="orderAvailable" name="orderAvailable">
+        <br>
+        <!--  -->
+        <label for="startDate">배송 날짜</label>
+        <br>
+        <div id="dateList">
+            
+        </div>
+
+        <br>
+        <label for="add">날짜 추가하기</label>
+        <br>
+        <input type="text" id="add" name="add" placeholder="1/1 형식으로">
+        <br>
+        <button class="btn_submit" onclick="addDate()">날짜 추가</button>
+        <br>
+        <!-- 각 호 갯수 -->
+
+        <label for="product1">1호 주문 최대 주문갯수(0은 품절)</label>
+        <br>
+        <input type="text" id="product1" name="product1" placeholder="0은 품절">
+        <br>
+        <label for="product2">2호 주문 최대 주문갯수</label>
+        <br>
+        <input type="text" id="product2" name="product2" placeholder="0은 품절">
+        <br>
+        <label for="product3">3호 주문 최대 주문갯수</label>
+        <br>
+        <input type="text" id="product3" name="product3" placeholder="0은 품절">
+        <br>
+        <label for="product4">4호 주문 최대 주문갯수</label>
+        <br>
+        <input type="text" id="product4" name="product4" placeholder="0은 품절">
+        <br>
+        <label for="product5">5호 주문 최대 주문갯수</label>
+        <br>
+        <input type="text" id="product5" name="product5" placeholder="0은 품절">
+        <br>
+        
+        <button class="btn_submit" onclick="updateOrder()">수정하기</button>
+    </div>
+
+</body>
+<script type="module" src="../../src/js/pages/admin/control-menu.js"></script>
+</html>

@@ -1,0 +1,17 @@
+# Archive directories (old files)
+archive/
+archive2/
+
+# Git
+.git/
+.gitignore
+
+# Documentation (optional - remove these lines if you want docs deployed)
+# README.md
+# MIGRATION_GUIDE.md
+# SUMMARY.md
+# DEPLOYMENT_CHECKLIST.md
+
+# System files
+.DS_Store
+*.log

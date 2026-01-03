@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호랑곶감 관리자 페이지</title>
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/pages/admin/print.css">
+</head>
+<body>
+    <div class="header">
+        <div>호랑곶감 관리자 페이지1</div>
+        <div class="box_links">
+            <button><a href="./print.html">포장리스트 출력</a></button>
+            <button><a href="./typeOrder.html">주문 입력하기</a></button>
+            <button><a href="./controlMenu.html">메뉴 관리</a></button>
+            <button>link4</button>
+        </div>
+    </div>
+    <div class="container_top">
+        <div class="box_title">
+            <h1>포장 리스트</h1>
+        </div>
+        <div class="box_printAndDate">
+            <button onClick="window.print()">인쇄하기</button>
+            <div id="date">현재 보고계시는 날짜 : </div>
+        </div>
+    </div>
+    
+    <!-- controller -->
+    <div class="container_controller">
+        <div class="box_searchDate">
+            <label for="searchDate">날짜</label>
+            <input type="date" id="searchDate" name="horang" min="2024-01-01" max="2024-04-31" />
+            <button id="searchBtn">조회하기</button>
+            <div id="loading" style="display: block;"></div>
+        </div>
+    </div>
+    
+    <!-- body table -->
+    <div class="container_body">
+        <div class="flex-table">
+            <!-- Row 1 -->
+            <div class="flex-row flex-header">
+                <div class="showing">
+                    <div class="flex-cell">보내는 이</div>
+                    <div class="flex-cell">받는 이</div>
+                    <div class="flex-cell">1호</div>
+                    <div class="flex-cell">2호</div>
+                    <div class="flex-cell">3호</div>
+                    <div class="flex-cell">4호</div>
+                    <div class="flex-cell">5호</div>
+                    <div class="flex-cell">기타</div>
+                    
+                    <div class="flex-cell">비고(to아부지)</div>
+
+                </div>
+                <div class="not-showing"> 
+                    <div class="flex-cell">배송 예약 날짜</div>
+                    <div class="flex-cell">번호</div>
+                    <div class="flex-cell">입금확인</div>
+                    <div class="flex-cell">배송</div>
+                    <div class="flex-cell">경로</div>
+                    <div class="flex-cell">주문자 성함</div>
+                    <div class="flex-cell">주문자 연락처</div>
+                    <div class="flex-cell">받는분 성함</div>
+                    <div class="flex-cell">받는분 연락처</div>
+                    <div class="flex-cell">받는분 주소</div>
+                    <div class="flex-cell">배송 요청사항</div>
+                    <div class="flex-cell">무게</div>
+                    <div class="flex-cell">기타 요청사항</div>
+                    <div class="flex-cell">1호 32</div>
+                    <div class="flex-cell">2호 43</div>
+                    <div class="flex-cell">3호 63</div>
+                    <div class="flex-cell">4호 85</div>
+                    <div class="flex-cell">5호 110</div>
+                    <div class="flex-cell">기타</div>
+                    <div class="flex-cell">주문금액</div>
+                    <div class="flex-cell">배송비</div>
+                    <div class="flex-cell">총액</div>
+                    <div class="flex-cell">기타금액 변동사항</div>
+                    <div class="flex-cell">비고 to 아버지</div>
+                </div>
+            </div>
+
+            
+            <!-- template -->
+            <!-- Row 2 -->
+            <!--             
+            <div class="flex-row">
+                <div class="showing">
+                    <div class="flex-cell">보내는 이</div>
+                    <div class="flex-cell">받는 이</div>
+                    <div class="flex-subcell">
+                        <div class="flex-subrow">
+                            <div class="flex-cell">1호</div>
+                            <div class="flex-cell">2호</div>
+                            <div class="flex-cell">3호</div>
+                            <div class="flex-cell">4호</div>
+                            <div class="flex-cell">5호</div>
+                            <div class="flex-cell">기타</div>
+                        </div>
+                        <div class="flex-subrow">
+                            <div class="flex-cell">1호</div>
+                            <div class="flex-cell">2호</div>
+                            <div class="flex-cell">3호</div>
+                            <div class="flex-cell">4호</div>
+                            <div class="flex-cell">5호</div>
+                            <div class="flex-cell">기타</div>
+                        </div>
+                    </div>
+                    <div class="flex-cell">비고(to아부지)</div>
+                    <div class="flex-cell">요청사항</div>
+                </div>
+                <div class="not-showing"> 
+                    <div class="flex-cell">배송</div>
+                    <div class="flex-cell">배송</div>
+                    <div class="flex-cell">확인</div>
+                    <div class="flex-cell">주문자</div>
+                    <div class="flex-cell">받는분</div>
+                    <div class="flex-cell">주문 내용</div>
+                    <div class="flex-cell">금액</div>
+                    <div class="flex-cell">1호</div>
+                    <div class="flex-cell">2호</div>
+                    <div class="flex-cell">3호</div>
+                    <div class="flex-cell">4호</div>
+                    <div class="flex-cell">5호</div>
+                    <div class="flex-cell">배송 예약 날짜</div>
+                    <div class="flex-cell">번 호</div>
+                    <div class="flex-cell">입 금</div>
+                    <div class="flex-cell">배 송</div>
+                    <div class="flex-cell">경로</div>
+                    <div class="flex-cell">주문자 성함</div>
+                    <div class="flex-cell">주문자 연락처</div>
+                    <div class="flex-cell">받는분 성함</div>
+                    <div class="flex-cell">받는분 연락처</div>
+                    <div class="flex-cell">받는 분 주소</div>
+                    <div class="flex-cell">배송 요청사항</div>
+                    <div class="flex-cell">무게</div>
+                    <div class="flex-cell">기타 요청사항</div>
+                    <div class="flex-cell">1호 32</div>
+                    <div class="flex-cell">2호 43</div>
+                    <div class="flex-cell">3호 63</div>
+                    <div class="flex-cell">4호 85</div>
+                    <div class="flex-cell">5호 110</div>
+                    <div class="flex-cell">기타</div>
+                    <div class="flex-cell">주문금액</div>
+                    <div class="flex-cell">배송비</div>
+                    <div class="flex-cell">총액</div>
+                    <div class="flex-cell">기타금액 변동사항</div>
+                    <div class="flex-cell">비고(to아부지)</div>
+                    <div class="flex-cell">총이익</div>
+                </div>
+            </div>
+            -->
+
+            <!-- row 3 -->
+            <!--             
+            <div class="flex-row">
+                <div class="showing">
+                    <div class="flex-cell">보내는 이</div>
+                    <div class="flex-cell">받는 이</div>
+                    <div class="flex-subcell">
+                        <div class="flex-subrow">
+                            <div class="flex-cell">
+                                주문 내용
+                            </div>
+                        </div>
+                        <div class="flex-subrow">
+                            <div class="flex-cell">1호</div>
+                            <div class="flex-cell">2호</div>
+                            <div class="flex-cell">3호</div>
+                            <div class="flex-cell">4호</div>
+                            <div class="flex-cell">5호</div>
+                            <div class="flex-cell">기타</div>
+                        </div>
+                    </div>
+                    <div class="flex-cell">요청사항</div>
+                </div>
+                <div class="not-showing"> 
+                    <div class="flex-cell">배송</div>
+                    <div class="flex-cell">배송</div>
+                    <div class="flex-cell">확인</div>
+                    <div class="flex-cell">주문자</div>
+                    <div class="flex-cell">받는분</div>
+                    <div class="flex-cell">주문 내용</div>
+                    <div class="flex-cell">금액</div>
+                    <div class="flex-cell">1호</div>
+                    <div class="flex-cell">2호</div>
+                    <div class="flex-cell">3호</div>
+                    <div class="flex-cell">4호</div>
+                    <div class="flex-cell">5호</div>
+                    <div class="flex-cell">배송 예약 날짜</div>
+                    <div class="flex-cell">번 호</div>
+                    <div class="flex-cell">입 금</div>
+                    <div class="flex-cell">배 송</div>
+                    <div class="flex-cell">경로</div>
+                    <div class="flex-cell">주문자 성함</div>
+                    <div class="flex-cell">주문자 연락처</div>
+                    <div class="flex-cell">받는분 성함</div>
+                    <div class="flex-cell">받는분 연락처</div>
+                    <div class="flex-cell">받는 분 주소</div>
+                    <div class="flex-cell">배송 요청사항</div>
+                    <div class="flex-cell">무게</div>
+                    <div class="flex-cell">기타 요청사항</div>
+                    <div class="flex-cell">1호 32</div>
+                    <div class="flex-cell">2호 43</div>
+                    <div class="flex-cell">3호 63</div>
+                    <div class="flex-cell">4호 85</div>
+                    <div class="flex-cell">5호 110</div>
+                    <div class="flex-cell">기타</div>
+                    <div class="flex-cell">주문금액</div>
+                    <div class="flex-cell">배송비</div>
+                    <div class="flex-cell">총액</div>
+                    <div class="flex-cell">기타금액 변동사항</div>
+                    <div class="flex-cell">비고(to아부지)</div>
+                    <div class="flex-cell">총이익</div>
+                </div>
+            </div>
+             -->
+            <!-- row 4 -->
+
+            <!-- row 5 -->
+            
+        </div>
+    </div>
+    
+
+
+    <script type="module" src="../../src/js/pages/admin/print.js"></script>
+</body>
+</html>
