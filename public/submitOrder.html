@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>해청농원 주문페이지</title>
+    <link rel="stylesheet" href="../src/css/reset.css">
+    <link rel="stylesheet" href="../src/css/pages/submit-order.css">
+</head>
+<body>
+    <div id="intro">
+        <div id="product_type_selector">
+            <h1>해청농원 주문하기</h1>
+            <!-- <div class="product_type_buttons">
+                <button onclick="switchProductType('gotgam')" class="type_button active" id="gotgam_button">곶감 주문</button>
+                <button onclick="switchProductType('durup')" class="type_button" id="durup_button">두릅 주문</button>
+            </div> -->
+        </div>
+
+        <!-- 곶감 소개 -->
+        <div id="gotgam_intro" class="product_intro">
+            <div id="notify">
+                <h4 style="margin-bottom: 10px;">안녕하세요! <span id="currentYear"></span>년 곶감 주문은 마감되었습니다!</h4>
+                <h4 style="margin-bottom: 30px;"><span id="nextYear"></span>년 설날에 다시한번 뵈어요!</h4>
+                <h4>내년 곶감 주문이 궁금하시다면</h4>
+                <h4 style="margin-bottom: 30px;">카카오톡 플러스친구를 추가하시면 알람을 보내드립니다!</h4>
+                <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카톡 플러스친구</a></button>
+            </div>
+        </div>
+
+        <!-- 두릅 소개 -->
+        <div id="durup_intro" class="product_intro" style="display: none;">
+            <p style="line-height: 1.5; width: 90%; margin: 10px auto; font-size: 1.2rem;">
+                지리산 골짜기 산자락<br>
+                맑은 공기 머금고 자라난 산두릅.<br>
+            </p>
+            
+        </div>
+
+        <div class="box_description">
+            <!-- 곶감 설명 -->
+            <div id="gotgam_desc" class="product_desc">
+                <h4 style="font-weight: 700;">상세한 상품 설명과 안내사항을<br>꼭꼭꼭! 먼저 확인해주세요!<br>
+                    <button id="btn_detail"><a href="https://blog.naver.com/sanzalag/222162521584">상세보기</a></button>
+                </h4>
+                <br>
+                <h4>
+                    입금 후 다음날부터 주문내역을 조회하실 수 있습니다!
+                    <button><a href="./checkOrder.html">주문 확인</a></button>
+                </h4>
+            </div>
+            <!-- 두릅 설명 -->
+            <div id="durup_desc" class="product_desc" style="display: none;">
+                <img class="img1" src="../images/durup/1_1.jpg" alt="">
+                <p class="dsc">
+                    가장 부드럽고 맛있는 때를 놓치지 않기 위해<br>
+                    농장주가 직접 온종일 산기슭 오르내리며<br>
+                    하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
+                </p>
+                <img class="img2" src="../images/durup/1_2.jpg" alt="">
+                <p class="dsc">
+                    산기슭에서 자생하던 두릅이라<br>
+                    다양한 품종이 섞여있고 모양이 불규칙합니다.<br>
+                    시중의 밭에서 비료로 키운 두릅과 비교 불가!<br>
+                    어디서도 드셔보시지 못한 향을 자부합니다.<br>
+                </p>
+                
+                
+                <!-- <h3 style="font-weight: 700;">최고 부드럽고 맛난 지리산 산두릅 (참두릅) 😉👍</h3> -->
+            </div>
+
+
+            
+            <!-- 공통 설명 -->
+            <h3>
+                대량 주문이나 기타 문의사항은 카톡으로 연락주세요!
+                <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카카오톡</a></button>
+            </h3>
+            <h3>
+                입금 계좌를 확인/복사하시려면 눌러주세요!
+                <button><a href="./bankAccount.html">입금계좌 확인/복사하기</a></button>
+            </h3>
+        </div>
+    </div>
+    <div id="orderBox">
+        <form id="orderForm" onsubmit="submitOrder(); return false;">
+            <div id="priceTag" class="none">현재 금액 : 0원<br>(50000원 이하<br>택배비 4000원)</div>
+
+            <!-- 곶감 상품 -->
+            <div id="gotgam_products" class="product_list">
+                <!-- 1호 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/gotgam/1.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h4>1호 기본</h4>
+                        <h4>(30개입)</h4>
+                        <h4>32,000원</h4>
+                    </div>
+                </div>
+                <select id="product1" name="product1" oninput="update_price()">
+                    <option value="0" disabled selected>품절</option>
+                </select>
+
+                <!-- 2호 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/gotgam/2.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h4>2호 고급</h4>
+                        <h4>(30개입)</h4>
+                        <h4>43,000원</h4>
+                    </div>
+                </div>
+                <select id="product2" name="product2" oninput="update_price()">
+                    <option value="0" disabled selected>품절</option>
+                </select>
+
+                <!-- 3호 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/gotgam/3.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h4>3호 고급</h4>
+                        <h4>(40개입)</h4>
+                        <h4>63,000원</h4>
+                    </div>
+                </div>
+                <select id="product3" name="product3" oninput="update_price()">
+                    <option value="0" disabled selected>품절</option>
+                </select>
+
+                <!-- 4호 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/gotgam/4.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h4>4호 명품</h4>
+                        <h4>(40개입)</h4>
+                        <h4>85,000원</h4>
+                    </div>
+                </div>
+                <select id="product4" name="product4" oninput="update_price()">
+                    <option value="0" disabled selected>품절</option>
+                </select>
+
+                <!-- 5호 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/gotgam/5.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h4>5호 명품특</h4>
+                        <h4>(40개입)</h4>
+                        <h4>110,000원</h4>
+                    </div>
+                </div>
+                <select id="product5" name="product5" oninput="update_price()">
+                    <option value="0" disabled selected>품절</option>
+                </select>
+            </div>
+
+            <!-- 두릅 상품 -->
+            <div id="durup_products" class="product_list" style="display: none;">
+                <!-- 산두릅 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/durup/big_1.jpeg" alt="">
+                    <img class="productImg" src="../images/durup/big_2.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h2>1. 산두릅(참두릅) 본품</h2>
+                        <h2>1kg, 25000원</h2>
+                        <h2>5만원 이상 <span style="font-weight: bold;">택배비 면제</span>입니다!</h2>
+                    </div>
+                </div>
+                <select id="durup1" name="durup1" oninput="update_price()" style="font-size: 1.7rem;">
+                    <option value="0" disabled selected>주문량</option>
+                    <option value="1">1kg</option>
+                    <option value="2">2kg</option>
+                    <option value="3">3kg</option>
+                    <option value="4">4kg</option>
+                    <option value="5">5kg</option>
+                    <option value="6">6kg</option>
+                    <option value="7">7kg</option>
+                    <option value="8">8kg</option>
+                    <option value="9">9kg</option>
+                    <option value="10">10kg</option>
+                </select>
+
+
+
+                <!-- 곁순두릅 -->
+                <div class="imgBox">
+                    <img class="productImg" src="../images/durup/small_1.jpeg" alt="">
+                    <img class="productImg" src="../images/durup/small_2.jpeg" alt="">
+                    <div class="imgCaption">
+                        <h2>2. 곁순두릅(장아찌용 작은사이즈)</h2>
+                        <h2>1KG 15000원</h2>
+                        <h2>2KG부터 주문가능합니다!</h2>
+                    </div>
+                </div>
+                <select id="durup2" name="durup2" oninput="update_price()" style="font-size: 1.7rem;">
+                    <option value="0" disabled selected>주문량</option>
+                    <option value="2">2kg</option>
+                    <option value="3">3kg</option>
+                    <option value="4">4kg</option>
+                    <option value="5">5kg</option>
+                    <option value="6">6kg</option>
+                    <option value="7">7kg</option>
+                    <option value="8">8kg</option>
+                    <option value="9">9kg</option>
+                    <option value="10">10kg</option>
+                </select>
+                <div class="imgBox">
+                    <img class="productImg" src="../images/durup/comparison.png" alt="">
+                    <div class="imgCaption" style="margin-top: 0;">
+                        <h2>사이즈 비교입니다!</h2>
+                    </div>
+                </div>
+
+                <!-- 고사리 안내 -->
+                <div class="box_description">
+                    <div class="gosariBox">
+                        <div class="imageBox">
+                            <img src="../images/durup/gosari1.jpeg" alt="">
+                            <img src="../images/durup/gosari2.jpeg" alt="">
+                            <img src="../images/durup/gosari3.jpeg" alt="">
+                        </div>
+                        <h4 style="font-size: 1.5rem;">
+                            고사리, 취나물, 옻순도 판매합니다! 
+                        </h4>
+                        <h4 style="font-size: 1.3rem;">
+                            010-9060-9281
+                        </h4>
+                        <button onclick="copy_phone()">전화번호 복사하기</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 곶감 날짜 선택 -->
+            <div id="gotgam_date" class="date_selector">
+                <div class="box_reserve_date" style="margin-top: 20px;">
+                    <label for="reserve_date">날짜 지정</label>
+                    <br>
+                    <h4>원하시는 발송 날짜를 골라주세요!</h4>
+                    <h5>택배 도착일이 아닌 "발송일"을 지정 예약하실 수 있습니다.</h5>
+                    <h5>-보통 영업일 기준 1~2일 후 도착합니다.</h5>
+                    <h5>올해 설날은 1/29(수) 입니다!</h5>
+                    <select name="reserve_date" id="reserve_date" style="margin-bottom: 30px;" required>
+                        <option value="" disabled selected>날짜 선택하기</option>
+                        <option value="가능한 빨리(1월초 순차배송)">가능한 빨리(1월초 순차배송)</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="summary_order"></div>
+
+            <!-- 공통 주문 정보 입력 -->
+            <div class="order_info">
+                <label for="send_name">주문자 성함</label>
+                <br>
+                <input type="text" id="send_name" name="send_name" required>
+                <br>
+                <label for="send_contact">주문자 연락처 (숫자만 입력)</label>
+                <br>
+                <input type="text" id="send_contact" name="send_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+                <br>
+                <label for="rcv_name">받는 분 성함</label>
+                <br>
+                <input type="text" id="rcv_name" name="rcv_name" required>
+                <br>
+                <label for="rcv_contact">받는 분 연락처 (숫자만 입력)</label>
+                <br>
+                <input type="text" id="rcv_contact" name="rcv_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+                <br>
+                <label for="rcv_address">받는 분 주소</label>
+                <br>
+                <input type="text" id="rcv_address" name="rcv_address" required>
+                <br>
+                <label for="request_etc">해청농원 요청사항</label>
+                <br>
+                <input type="text" id="request_etc" name="request_etc">
+                <br>
+                <label for="request_delivery">택배사 요청사항</label>
+                <br>
+                <input type="text" id="request_delivery" name="request_delivery">
+                <br>
+            </div>
+            <p id="gotgam_outro">
+
+            </p>
+            <p id="durup_outro" class="dsc" style="display: none;">
+                예약 주문후 입금하시면 준비되는대로 순차적으로 발송해드립니다<br>
+                기다림에 보답하는 맘으로<br>
+                가장 신선한 상태로 받으실수 있도록 최선을 다하겠습니다<br>
+                ♡♡해청농원♡♡<br>
+                감사합니다
+            </p>
+
+
+            <button id="btn_submit" type="submit">주문하기</button>
+            <div id="loading" style="display: block;"></div>
+
+            <!-- 개인정보 수집 동의 -->
+            <p><br>
+                * 개인정보 수집 및 이용 안내<br>
+                주체 : 해청농원<br>
+                항목 : 성함, 연락처, 주소<br>
+                목적 : 제품 배송 및 상담<br>
+                * 거부할 권리가 있으나 제품 구매가 불가능합니다.<br>
+                * 주문서를 제출하시면 동의한 것으로 간주됩니다.
+            </p>
+            <p>
+                대표자 : 이광호 (01090609281)<br>
+                주소 : 함양군 서하면 서하월평길 35<br>
+                농업경영체 등록번호 1-002-183-373
+            </p>
+        </form>
+    </div>
+
+    <!-- 주문 완료 결과 -->
+    <div id="result" style="display: none;">
+        <h2 style="font-size: 1.5rem;font-weight: 700;margin-bottom: 1rem;">주문이 접수되었습니다!</h2>
+        <h4>정성을 담아 보내겠습니다 :)</h4>
+        <h4 id="totalFee">입금하실 금액 : </h4>
+        <h4>계좌번호 : 농협 352-1386-3306-83 이광호</h4>
+        <button onclick="copy_bankInfo()">계좌번호 복사하기</button>
+        <h4 style="font-weight: 700;margin-top: 30px;">주문 확인하기</h4>
+        <div class="orderReview"></div>
+        <button><a href="https://pf.kakao.com/_INxgzxb">카톡 문의하기</a></button>
+        <button onclick="newOrder()">새 주문 접수하기</button>
+    </div>
+
+    <script type="module" src="../src/js/pages/submit-order.js"></script>
+</body>
+</html>

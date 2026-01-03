@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>호랑곶감 주문 입력</title>
+    <link rel="stylesheet" href="../../src/css/reset.css">
+    <link rel="stylesheet" href="../../src/css/pages/admin/type-order.css">
+</head>
+<body>
+    <div class="header">
+        <div>호랑곶감 관리자 페이지2 <br>주문넣기</div>
+        <div class="box_links">
+            <button><a href="./print.html">포장리스트 출력</a></button>
+            <button><a href="./typeOrder.html">주문 입력하기</a></button>
+            <button><a href="./controlMenu.html">메뉴 관리</a></button>
+            <button>link4</button>
+        </div>
+    </div>
+
+
+    <div id="orderBox">
+        <h4>여기 복사해주세요</h4>
+        <textarea name="" id="tempText" cols="30" rows="10"></textarea>
+        
+        <br>
+        <input type="file" id="imageUpload" accept="image/*">
+        <br>
+        <button id="imageSearch" onclick="imageText()">이미지 분석하기</button>
+        <br>
+        <br>
+        
+        <br>
+        <div class="sendBox">
+            <div class="block">
+                <label for="send_name">주문자 성함</label>
+                <br>
+                <input type="text" id="send_name" name="send_name" placeholder="없다면 0으로">
+            </div>
+            <div class="block">
+                <label for="send_contact">주문자 연락처</label>
+                <br>
+                <input type="text" id="send_contact" name="send_contact" placeholder="없다면 0으로">
+            </div>
+            <div class="block" style="opacity: 0;">
+                <label for="send_address">주문자 주소</label>
+                <br>
+                <textarea name="send_address" id="send_address" cols="20" rows="5"></textarea>
+            </div>
+        </div>
+        <div class="rcvBox">
+            <div class="block">
+                <label for="rcv_name">받는 분 성함</label>
+                <!-- <h5>똑같아도 써주세요!</h5> -->
+                <br>
+                <input type="text" id="rcv_name" name="rcv_name">
+            </div>
+            <div class="block">
+                <label for="rcv_contact">받는 분 연락처</label>
+                <br>
+                <input type="text" id="rcv_contact" address="rcv_contact">
+            </div>
+            <div class="block">
+                <label for="rcv_address">받는 분 주소</label>
+                <br>
+                <input type="text" name="rcv_address" id="rcv_address" style="height: 100px;"></input>
+            </div>
+        </div>
+        
+        
+        <br>
+        <div class="orderList">
+            <label for="product1">1호</label>
+
+            <input type="text" id="product1" name="product1">
+
+            <label for="product2">2호</label>
+
+            <input type="text" id="product2" name="product2">
+
+            <label for="product3">3호</label>
+
+            <input type="text" id="product3" name="product3">
+
+            <label for="product4">4호</label>
+
+            <input type="text" id="product4" name="product4">
+
+            <label for="product5">5호</label>
+
+            <input type="text" id="product5" name="product5">
+            <br>
+            <label for="productEtc">기타</label>
+
+            <input type="text" id="productEtc" name="productEtc">
+        </div>
+
+
+        <label for="reserve_date">예약 발송일 </label>
+        <!-- option -->
+        <br>
+        <input type="text" id="reserve_date" name="reserve_date" placeholder="(1/30) 이런식으로" >
+        <br>
+        <label for="request_etc">해청농원 요청사항</label>
+        <br>
+        <input type="text" id="request_etc" name="request_etc">
+        <br>
+        <label for="request_delivery">택배사 요청사항</label>
+        <br>
+        <input type="text" id="request_delivery" name="request_delivery" >
+        <br>
+
+        <button id="btn_submit" onclick="submitOrder()">주문하기</button>
+        
+    </div>
+    
+    <div id="loading" style="display: block;"></div>
+        
+    <button id="newOrder" onclick="newOrder()" style="display: none;">새 주문 접수하기</button>
+
+    <script type="module" src="../../src/js/pages/admin/type-order.js"></script>
+</body>
+</html>
