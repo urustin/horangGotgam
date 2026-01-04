@@ -2,6 +2,8 @@ import { PRODUCT_PRICES, SHIPPING_THRESHOLD, SHIPPING_FEE, PRODUCT_TYPES, BANK_I
 import { apiService } from '../services/api.js';
 import { formatCurrency, formatPhoneNumber, getYears } from '../utils/formatters.js';
 import { toggleElement, toggleClass, copyToClipboard, startLoadingAnimation, stopLoadingAnimation } from '../utils/dom.js';
+import { formatDate } from '../utils/formatters.js';
+
 
 /**
  * Submit Order Page Controller
@@ -211,7 +213,9 @@ class SubmitOrderPage {
                 reserveDateSelect.length = 2;
 
                 data.availableDate.forEach(date => {
-                    const option = new Option(date, date);
+                    const option = new Option(formatDate(date), formatDate(date));
+                    console.log(reserveDateSelect)
+                    console.log(formatDate(date))
                     reserveDateSelect.add(option);
                 });
             }
@@ -358,7 +362,7 @@ class SubmitOrderPage {
             orderDetails += `해청농원 요청사항 : ${formData.request_etc}<br>`;
         }
         if (formData.request_delivery) {
-            orderDetails += `택배사 요청사항 : ${formData.request_delivery}<br>`;
+            orderDetails += `택배사 요청사항 : ${formData.request_delivery}<br><br>`;
         }
 
         document.querySelector('.orderReview').innerHTML = orderDetails;
