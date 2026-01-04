@@ -321,11 +321,6 @@ class SubmitOrderPage {
 
         let orderDetails = '';
 
-        // Show submitter information
-        orderDetails += `<strong>주문자 정보</strong><br>`;
-        orderDetails += `성함 : ${formData.send_name}<br>`;
-        orderDetails += `연락처 : ${formData.send_contact}<br><br>`;
-
         // Show product details
         orderDetails += `<strong>주문 내역</strong><br>`;
         if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
@@ -347,18 +342,23 @@ class SubmitOrderPage {
             }
         }
 
+        // Show submitter information
+        orderDetails += `<strong>주문자 정보</strong><br>`;
+        orderDetails += `성함 : ${formData.send_name}<br>`;
+        orderDetails += `연락처 : ${formData.send_contact}<br>`;
+
         // Show receiver information
-        orderDetails += `<br><strong>받는 분 정보</strong><br>`;
+        orderDetails += `<strong>받는 분 정보</strong><br>`;
         orderDetails += `성함 : ${formData.rcv_name}<br>`;
         orderDetails += `연락처 : ${formData.rcv_contact}<br>`;
         orderDetails += `주소 : ${formData.rcv_address}<br>`;
 
         // Show additional requests
         if (formData.request_etc) {
-            orderDetails += `<br>해청농원 요청사항 : ${formData.request_etc}<br>`;
+            orderDetails += `해청농원 요청사항 : ${formData.request_etc}<br>`;
         }
         if (formData.request_delivery) {
-            orderDetails += `택배사 요청사항 : ${formData.request_delivery}`;
+            orderDetails += `택배사 요청사항 : ${formData.request_delivery}<br>`;
         }
 
         document.querySelector('.orderReview').innerHTML = orderDetails;
