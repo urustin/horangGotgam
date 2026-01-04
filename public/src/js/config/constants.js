@@ -8,8 +8,8 @@ export const API_BASE_URL = "https://horang.dev.ericfromkorea.com:50001";
 export const PRODUCT_PRICES = {
     gotgam: {
         product1: 32000,
-        product2: 43000,
-        product3: 63000,
+        product2: 45000,
+        product3: 65000,
         product4: 85000,
         product5: 110000
     },
