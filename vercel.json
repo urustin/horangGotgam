@@ -2,7 +2,7 @@
   "version": 2,
   "headers": [
     {
-      "source": "/src/js/(.*).js",
+      "source": "/public/src/js/(.*).js",
       "headers": [
         {
           "key": "Content-Type",
@@ -15,7 +15,7 @@
       ]
     },
     {
-      "source": "/src/css/(.*).css",
+      "source": "/public/src/css/(.*).css",
       "headers": [
         {
           "key": "Content-Type",
