@@ -321,13 +321,20 @@ class SubmitOrderPage {
 
         let orderDetails = '';
 
+        // Show submitter information
+        orderDetails += `<strong>주문자 정보</strong><br>`;
+        orderDetails += `성함 : ${formData.send_name}<br>`;
+        orderDetails += `연락처 : ${formData.send_contact}<br><br>`;
+
+        // Show product details
+        orderDetails += `<strong>주문 내역</strong><br>`;
         if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
             for (let i = 1; i <= 5; i++) {
                 if (formData[`product${i}`]) {
                     orderDetails += `${i}호 : ${formData[`product${i}`]}개<br>`;
                 }
             }
-            orderDetails += `<br>발송일 : ${formData.reserveDate}`;
+            orderDetails += `<br>발송일 : ${formData.reserveDate}<br>`;
         } else {
             const durupTypes = {
                 durup1: '산두릅(참두릅)',
@@ -340,10 +347,13 @@ class SubmitOrderPage {
             }
         }
 
-        orderDetails += `<br>받는분 : ${formData.rcv_name}<br>`;
+        // Show receiver information
+        orderDetails += `<br><strong>받는 분 정보</strong><br>`;
+        orderDetails += `성함 : ${formData.rcv_name}<br>`;
         orderDetails += `연락처 : ${formData.rcv_contact}<br>`;
         orderDetails += `주소 : ${formData.rcv_address}<br>`;
 
+        // Show additional requests
         if (formData.request_etc) {
             orderDetails += `<br>해청농원 요청사항 : ${formData.request_etc}<br>`;
         }
