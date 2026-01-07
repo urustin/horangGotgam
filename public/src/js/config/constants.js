@@ -24,10 +24,8 @@ export const SHIPPING_THRESHOLD = 50000;
 export const SHIPPING_FEE = 4000;
 
 // Product types
-export const PRODUCT_TYPES = {
-    GOTGAM: 'gotgam',
-    DURUP: 'durup'
-};
+export const PRODUCT_TYPES = "gotgam" ; // "gotgam" or "durup"
+export const IS_AVAILABLE = true; // true or false
 
 // Bank account information
 export const BANK_INFO = "농협 352-1386-3306-83 이광호";
