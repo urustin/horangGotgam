@@ -1,4 +1,4 @@
-import { PRODUCT_PRICES, SHIPPING_THRESHOLD, SHIPPING_FEE, PRODUCT_TYPES, BANK_INFO, CONTACT_PHONE } from '../config/constants.js';
+import { PRODUCT_PRICES, SHIPPING_THRESHOLD, SHIPPING_FEE, PRODUCT_TYPES, BANK_INFO, CONTACT_PHONE, IS_AVAILABLE } from '../config/constants.js';
 import { apiService } from '../services/api.js';
 import { formatCurrency, formatPhoneNumber, getYears } from '../utils/formatters.js';
 import { toggleElement, toggleClass, copyToClipboard, startLoadingAnimation, stopLoadingAnimation } from '../utils/dom.js';
@@ -10,7 +10,7 @@ import { formatDate } from '../utils/formatters.js';
  */
 class SubmitOrderPage {
     constructor() {
-        this.currentProductType = PRODUCT_TYPES.GOTGAM; // or PRODUCT_TYPES.DURUP
+        this.currentProductType = PRODUCT_TYPES; // or PRODUCT_TYPES.DURUP
         this.loadingInterval = null;
 
         this.init();
@@ -21,15 +21,104 @@ class SubmitOrderPage {
      */
     init() {
         document.addEventListener('DOMContentLoaded', () => {
+            this.renderIntroSection();
             this.setupYears();
             this.setupMenuVisibility();
             this.setupEventListeners();
             this.updatePrice();
 
-            if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+            if (this.currentProductType === "gotgam") {
                 this.loadAvailableDates();
             }
         });
+    }
+
+    /**
+     * Render intro section based on product type
+     */
+    renderIntroSection() {
+        const introDiv = document.getElementById('intro');
+        if (!introDiv) return;
+
+        if (this.currentProductType === "gotgam") {
+            introDiv.innerHTML = `
+                <div id="product_type_selector">
+                    <h1>해청농원 주문하기</h1>
+                </div>
+
+                <!-- 곶감 소개 -->
+                <div id="gotgam_intro" class="product_intro">
+                    <div id="notify"></div>
+                </div>
+
+                <div class="box_description">
+                    <!-- 곶감 설명 -->
+                    <div id="gotgam_desc" class="product_desc">
+                        <h4 style="font-weight: 700;">상세한 상품 설명과 안내사항을<br>꼭꼭꼭! 먼저 확인해주세요!<br>
+                            <button id="btn_detail"><a href="https://blog.naver.com/sanzalag/222162521584">상세보기</a></button>
+                        </h4>
+                        <br>
+                        <h4>
+                            입금 후 다음날부터 주문내역을 조회하실 수 있습니다!
+                            <button><a href="./checkOrder.html">주문 확인</a></button>
+                        </h4>
+                    </div>
+
+                    <!-- 공통 설명 -->
+                    <h3>
+                        대량 주문이나 기타 문의사항은 카톡으로 연락주세요!
+                        <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카카오톡</a></button>
+                    </h3>
+                    <h3>
+                        입금 계좌를 확인/복사하시려면 눌러주세요!
+                        <button><a href="./bankAccount.html">입금계좌 확인/복사하기</a></button>
+                    </h3>
+                </div>
+            `;
+        } else if (this.currentProductType === "durup") {
+            introDiv.innerHTML = `
+                <div id="product_type_selector">
+                    <h1>해청농원 주문하기</h1>
+                </div>
+
+                <!-- 두릅 소개 -->
+                <div id="durup_intro" class="product_intro">
+                    <p style="line-height: 1.5; width: 90%; margin: 10px auto; font-size: 1.2rem;">
+                        지리산 골짜기 산자락<br>
+                        맑은 공기 머금고 자라난 산두릅.<br>
+                    </p>
+                </div>
+
+                <div class="box_description">
+                    <!-- 두릅 설명 -->
+                    <div id="durup_desc" class="product_desc">
+                        <img class="img1" src="./images/durup/1_1.jpg" alt="">
+                        <p class="dsc">
+                            가장 부드럽고 맛있는 때를 놓치지 않기 위해<br>
+                            농장주가 직접 온종일 산기슭 오르내리며<br>
+                            하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
+                        </p>
+                        <img class="img2" src="./images/durup/1_2.jpg" alt="">
+                        <p class="dsc">
+                            산기슭에서 자생하던 두릅이라<br>
+                            다양한 품종이 섞여있고 모양이 불규칙합니다.<br>
+                            시중의 밭에서 비료로 키운 두릅과 비교 불가!<br>
+                            어디서도 드셔보시지 못한 향을 자부합니다.<br>
+                        </p>
+                    </div>
+
+                    <!-- 공통 설명 -->
+                    <h3>
+                        대량 주문이나 기타 문의사항은 카톡으로 연락주세요!
+                        <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카카오톡</a></button>
+                    </h3>
+                    <h3>
+                        입금 계좌를 확인/복사하시려면 눌러주세요!
+                        <button><a href="./bankAccount.html">입금계좌 확인/복사하기</a></button>
+                    </h3>
+                </div>
+            `;
+        }
     }
 
     /**
@@ -50,7 +139,7 @@ class SubmitOrderPage {
      * Set up menu visibility based on product type
      */
     setupMenuVisibility() {
-        const isGotgam = this.currentProductType === PRODUCT_TYPES.GOTGAM;
+        const isGotgam = this.currentProductType === "gotgam";
 
         ['intro', 'desc', 'products', 'outro'].forEach(section => {
             toggleElement(`gotgam_${section}`, isGotgam);
@@ -70,7 +159,7 @@ class SubmitOrderPage {
      */
     setupEventListeners() {
         // Product quantity change listeners
-        if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+        if (this.currentProductType === "gotgam") {
             for (let i = 1; i <= 5; i++) {
                 const select = document.getElementById(`product${i}`);
                 if (select) {
@@ -110,7 +199,7 @@ class SubmitOrderPage {
     calculateTotal() {
         let total = 0;
 
-        if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+        if (this.currentProductType === "gotgam") {
             for (let i = 1; i <= 5; i++) {
                 const select = document.getElementById(`product${i}`);
                 if (select && select.value) {
@@ -164,7 +253,7 @@ class SubmitOrderPage {
 
         let summary = '';
 
-        if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+        if (this.currentProductType === "gotgam") {
             for (let i = 1; i <= 5; i++) {
                 const select = document.getElementById(`product${i}`);
                 if (select && select.value && select.value !== '0') {
@@ -201,8 +290,21 @@ class SubmitOrderPage {
      */
     async loadAvailableDates() {
         const notifyElement = document.querySelector("#notify");
-        if (notifyElement) {
-            notifyElement.innerHTML = "";
+        const descriptionElement = document.querySelector(".box_description");
+        // Check if orders are not available
+        if (!IS_AVAILABLE && notifyElement) {
+            notifyElement.innerHTML = `
+                <h4 style="margin-bottom: 10px;">안녕하세요! <span id="currentYear"></span>년 곶감 주문은 마감되었습니다!</h4>
+                <h4 style="margin-bottom: 30px;"><span id="nextYear"></span>년 설날에 다시한번 뵈어요!</h4>
+                <h4 style="margin-bottom: 10px;">내년 곶감 주문이 궁금하시다면</h4>
+                <h4 style="margin-bottom: 30px;">카카오톡 플러스친구를 추가하시면 알람을 보내드립니다!</h4>
+                <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카톡 플러스친구</a></button>
+            `;
+            descriptionElement.innerHTML=``
+            
+            // Re-apply year spans after adding the HTML
+            this.setupYears();
+            return;
         }
 
         try {
@@ -260,7 +362,7 @@ class SubmitOrderPage {
         try {
             const formData = this.buildFormData();
 
-            if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+            if (this.currentProductType === "gotgam") {
                 await apiService.submitGotgamOrder(formData);
             } else {
                 await apiService.submitDurupOrder(formData);
@@ -281,9 +383,9 @@ class SubmitOrderPage {
     buildFormData() {
         const formData = {
             productType: this.currentProductType,
-            sheetName: this.currentProductType === PRODUCT_TYPES.GOTGAM ? '응답' : '설문지 응답',
+            sheetName: this.currentProductType === "gotgam" ? '응답' : '설문지 응답',
             orderDate: new Date().toISOString(),
-            reserveDate: this.currentProductType === PRODUCT_TYPES.GOTGAM
+            reserveDate: this.currentProductType === "gotgam"
                 ? document.getElementById('reserve_date').value
                 : '즉시배송',
             send_name: document.getElementById('send_name').value,
@@ -295,7 +397,7 @@ class SubmitOrderPage {
             request_delivery: document.getElementById('request_delivery').value
         };
 
-        if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+        if (this.currentProductType === "gotgam") {
             for (let i = 1; i <= 5; i++) {
                 const value = document.getElementById(`product${i}`).value;
                 formData[`product${i}`] = value === "0" ? "" : value;
@@ -327,7 +429,7 @@ class SubmitOrderPage {
 
         // Show product details
         orderDetails += `<strong>주문 내역</strong><br>`;
-        if (this.currentProductType === PRODUCT_TYPES.GOTGAM) {
+        if (this.currentProductType === "gotgam") {
             for (let i = 1; i <= 5; i++) {
                 if (formData[`product${i}`]) {
                     orderDetails += `${i}호 : ${formData[`product${i}`]}개<br>`;
