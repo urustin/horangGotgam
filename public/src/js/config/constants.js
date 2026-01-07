@@ -30,3 +30,20 @@ export const IS_AVAILABLE = true; // true or false
 // Bank account information
 export const BANK_INFO = "농협 352-1386-3306-83 이광호";
 export const CONTACT_PHONE = "01090609281";
+
+// Site configuration
+export const SITE_URL = "https://horang-gotgam.vercel.app";
+
+// Meta tags configuration
+export const META_TAGS = {
+    gotgam: {
+        title: "해청농원 곶감 주문페이지",
+        description: "해청농원 곶감 주문하기",
+        image: "/images/gotgam/1.jpeg"
+    },
+    durup: {
+        title: "해청농원 두릅 주문페이지",
+        description: "해청농원 산두릅(참두릅) 주문하기",
+        image: "/images/durup/1_1.jpg"
+    }
+};
