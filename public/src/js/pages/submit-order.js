@@ -21,7 +21,9 @@ class SubmitOrderPage {
      */
     init() {
         document.addEventListener('DOMContentLoaded', () => {
-            alert("잠시 서버 유지보수를 위해 서비스가 일시정지됩니다! 조금 후에 시도해주세요! 1/15 아침 8시~아침 10시")
+            //유지보수
+            // alert("잠시 서버 유지보수를 위해 서비스가 일시정지됩니다! 조금 후에 시도해주세요! 1/15 아침 8시~아침 10시")
+            //
             this.renderIntroSection();
             this.setupYears();
             this.setupMenuVisibility();
