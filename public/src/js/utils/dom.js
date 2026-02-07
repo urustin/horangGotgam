@@ -81,3 +81,90 @@ export function stopLoadingAnimation(element, intervalId) {
         el.style.display = 'none';
     }
 }
+
+/**
+ * Show loading overlay covering the entire screen
+ * Displays a semi-transparent dark background with a centered spinner
+ */
+export function showLoadingOverlay() {
+    // Remove existing overlay if present
+    const existing = document.getElementById('loading-overlay');
+    if (existing) {
+        existing.remove();
+    }
+
+    // Create overlay container
+    const overlay = document.createElement('div');
+    overlay.id = 'loading-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+    `;
+
+    // Create container for spinner and text
+    const container = document.createElement('div');
+    container.style.cssText = `
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    `;
+
+    // Create spinner
+    const spinner = document.createElement('div');
+    spinner.style.cssText = `
+        width: 60px;
+        height: 60px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top: 5px solid #ffffff;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    `;
+
+    // Create loading text
+    const loadingText = document.createElement('div');
+    loadingText.style.cssText = `
+        color: #ffffff;
+        text-align: center;
+        font-size: 16px;
+        line-height: 1.6;
+    `;
+    loadingText.textContent = '로딩중입니다...\n잠시만 기다려주세요.';
+    loadingText.innerHTML = '로딩중입니다...<br>잠시만 기다려주세요.';
+
+    // Add CSS animation
+    if (!document.getElementById('loading-spinner-style')) {
+        const style = document.createElement('style');
+        style.id = 'loading-spinner-style';
+        style.textContent = `
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        `;
+        document.head.appendChild(style);
+    }
+
+    container.appendChild(spinner);
+    container.appendChild(loadingText);
+    overlay.appendChild(container);
+    document.body.appendChild(overlay);
+}
+
+/**
+ * Hide loading overlay
+ */
+export function hideLoadingOverlay() {
+    const overlay = document.getElementById('loading-overlay');
+    if (overlay) {
+        overlay.remove();
+    }
+}
