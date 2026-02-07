@@ -1,7 +1,7 @@
 import { PRODUCT_PRICES, SHIPPING_THRESHOLD, SHIPPING_FEE, PRODUCT_TYPES, BANK_INFO, CONTACT_PHONE, IS_AVAILABLE } from '../config/constants.js';
 import { apiService } from '../services/api.js';
 import { formatCurrency, formatPhoneNumber, getYears } from '../utils/formatters.js';
-import { toggleElement, toggleClass, copyToClipboard, startLoadingAnimation, stopLoadingAnimation } from '../utils/dom.js';
+import { toggleElement, toggleClass, copyToClipboard, startLoadingAnimation, stopLoadingAnimation, showLoadingOverlay, hideLoadingOverlay } from '../utils/dom.js';
 import { formatDate } from '../utils/formatters.js';
 
 
@@ -304,12 +304,13 @@ class SubmitOrderPage {
                 <button><a href="https://pf.kakao.com/_INxgzxb">해청농원 카톡 플러스친구</a></button>
             `;
             descriptionElement.innerHTML=``
-            
+
             // Re-apply year spans after adding the HTML
             this.setupYears();
             return;
         }
 
+        showLoadingOverlay();
         try {
             const data = await apiService.loadOrder();
 
@@ -328,19 +329,22 @@ class SubmitOrderPage {
             for (let i = 1; i <= 5; i++) {
                 const select = document.getElementById(`product${i}`);
                 if (select) {
-                    if (data[`product${i}`] !== "0") {
-                        select.innerHTML = '<option value="0" disabled selected>갯수</option><option value="0">0개</option>';
+                    if (data[`product${i}`] == "0") {
+                        select.innerHTML = '<option value="0" disabled selected>품절</option>';
+                    } else {
+
+                        select.innerHTML = '<option value="0" disabled selected>갯수</option>';
                         const length = parseInt(data[`product${i}`]);
-                        for (let j = 1; j <= length; j++) {
+                        for (let j = 0; j <= length; j++) {
                             select.innerHTML += `<option value="${j}">${j}개</option>`;
                         }
-                    } else {
-                        select.innerHTML = '<option value="0" disabled selected>품절</option>';
                     }
                 }
             }
         } catch (error) {
             console.error('Error loading order data:', error);
+        } finally {
+            hideLoadingOverlay();
         }
     }
 
