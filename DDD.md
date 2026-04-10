@@ -146,12 +146,18 @@
 ```
 horangGotgam/
 ├── index.html                    # root redirect (vercel entry)
-├── vercel.json                   # MIME type / cache 설정
+├── vercel.json                   # buildCommand + MIME/cache 설정
 ├── DDD.md                        # 이 문서
+├── CLAUDE.md                     # Claude Code 작업 가이드
+├── .env.example                  # PRODUCT_TYPE 예시
+├── scripts/
+│   └── build-env.sh              # .env → public/env.js 생성 (vercel buildCommand)
 │
 └── public/                       # 웹 루트 (Vercel 배포 기준)
-    ├── index.html                # 랜딩 / 홈페이지
-    ├── submitOrder.html          # 주문 페이지 (핵심)
+    ├── env.js                    # [런타임 생성, gitignored] window.__HORANG_CONFIG__
+    ├── index.html                # 곶감 랜딩 (기본) / durup이면 landing-durup.html로 리다이렉트
+    ├── landing-durup.html        # 두릅 랜딩
+    ├── submitOrder.html          # 주문 페이지 (핵심, 곶감/두릅 공용)
     ├── checkOrder.html           # 주문 조회 페이지
     ├── bankAccount.html          # 계좌 정보 간이 페이지
     │
@@ -200,6 +206,61 @@ horangGotgam/
 
 - **Page Controller Pattern**: 각 페이지마다 하나의 클래스(`SubmitOrderPage`, `CheckOrderPage`)가 해당 페이지의 모든 로직을 담당
 - **Singleton Service**: `APIService`는 인스턴스를 하나 생성해 `apiService`로 export
-- **Feature Flag**: `constants.js`의 `IS_AVAILABLE`, `PRODUCT_TYPES`로 주문 가능 여부 및 활성 상품 유형을 코드 변경으로 토글
+- **Runtime ProductType**: `PRODUCT_TYPE` 환경변수 → `scripts/build-env.sh` → `public/env.js` → `window.__HORANG_CONFIG__.productType` → `constants.js`의 `PRODUCT_TYPES`. 기본값 `"gotgam"`, 허용값 `"gotgam"|"durup"`
+- **Landing Split + Client Redirect**: `public/index.html`은 곶감 랜딩을 기본 렌더하되, 헤드에서 `env.js` 로드 후 `productType === "durup"`이면 `landing-durup.html`로 `location.replace()`. 양쪽 랜딩은 같은 디자인 시스템을 공유
+- **Theme Switching (CSS 변수 오버라이드)**: `design-system.css`의 `:root`에 브랜드/중립 컬러와 RGB 튜플(`--c-brand-rgb` 등)이 선언되고, `html.product-gotgam` 셀렉터로 gotgam 테마 값이 덮어씀. 모든 페이지 head 스크립트가 `productType`에 따라 `<html>`에 `product-gotgam`/`product-durup` 클래스를 부착. alpha 합성은 `rgba(var(--c-brand-rgb), α)` 패턴으로 한 번에 스위칭 가능
+- **Feature Flag (결제/재고)**: `constants.js`의 `IS_AVAILABLE`로 주문 가능 여부를 코드 변경으로 토글
 - **Global Function Exposure**: HTML `onclick` 핸들러를 위해 `window.submitOrder = ...` 방식으로 전역 노출
 - **계좌이체 결제**: PG 없이 관리자가 수동으로 입금 확인하는 오프라인 결제 방식
+
+---
+
+## 9. 런타임 구성 (Runtime Config)
+
+### 9.1 환경변수 → 런타임 설정 흐름
+
+```
+.env (PRODUCT_TYPE=gotgam|durup)
+   │
+   ▼
+scripts/build-env.sh   ← vercel buildCommand 또는 로컬 수동 실행
+   │
+   ▼
+public/env.js          ← window.__HORANG_CONFIG__ = { productType }
+   │
+   ▼
+각 HTML head           ← env.js 로드 → <html>에 product-* 클래스 부착
+   │
+   ▼
+constants.js           ← _runtimeCfg.productType → PRODUCT_TYPES
+   │
+   ▼
+CSS / JS 분기          ← 테마/랜딩/상품 목록/문구
+```
+
+### 9.2 디자인 시스템 변수
+
+`public/src/css/design-system.css`:
+
+- `:root`: durup(초록 계열) 기본값 + RGB 튜플 (`--c-brand-rgb`, `--c-gold-rgb`, `--c-bg-dark-rgb`, `--c-text-inv-rgb`, `--c-shadow-rgb`)
+- `html.product-gotgam`: 모든 컬러 토큰을 주황/감빛으로 오버라이드
+- 하드코딩된 `rgba(46,125,50,...)` 등은 전부 `rgba(var(--c-brand-rgb),α)`로 치환되어 있음. 새 CSS 추가 시 이 패턴 유지 필요
+
+### 9.3 랜딩 분기 요약
+
+| productType | 진입 URL | 실제 렌더 |
+|---|---|---|
+| `gotgam` (기본) | `/public/index.html` | 그대로 곶감 랜딩 (`html.product-gotgam`) |
+| `durup` | `/public/index.html` | 즉시 `landing-durup.html`로 replace (`html.product-durup` 가정, :root 값 그대로 사용) |
+
+### 9.4 로컬 개발
+
+```bash
+# fe 루트에서
+echo "PRODUCT_TYPE=gotgam" > .env     # 또는 durup
+sh scripts/build-env.sh               # public/env.js 생성
+python3 -m http.server 8080 --directory . --bind 127.0.0.1
+# http://127.0.0.1:8080/public/index.html
+```
+
+BE 로컬 연결 시 `public/src/js/config/constants.js` 상단의 `API_BASE_URL` 주석을 swap (프로덕션/로컬). **커밋 전 반드시 원복**.
