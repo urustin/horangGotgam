@@ -3,33 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>해청농원 두릅 — 지리산 산두릅</title>
 
-  <script src="./env.js"></script>
-  <script>
-    (function () {
-      var t = (window.__HORANG_CONFIG__ || {}).productType;
-      if (t === "durup") {
-        window.location.replace("./landing-durup.html");
-        return;
-      }
-      document.documentElement.classList.add("product-gotgam");
-    })();
-  </script>
+  <meta name="description" content="지리산 자락 함양에서 농장주가 직접 채취한 산두릅(참두릅). 해청농원 두릅.">
 
-  <title>해청농원 곶감 — 지리산 명품 곶감</title>
-
-  <meta name="description" content="지리산 자락 함양에서 정성껏 말린 해청농원 곶감. 1호부터 5호까지 다양한 선물세트를 직접 만나보세요.">
-
-  <meta property="og:title" content="해청농원 곶감 — 지리산 명품 곶감">
-  <meta property="og:description" content="지리산 자락 함양에서 정성껏 말린 해청농원 곶감 선물세트">
-  <meta property="og:image" content="https://horang-gotgam.vercel.app/public/images/gotgam/1.jpeg">
+  <meta property="og:title" content="해청농원 두릅 — 지리산 산두릅">
+  <meta property="og:description" content="지리산 자락 함양에서 농장주가 직접 채취한 산두릅(참두릅)">
+  <meta property="og:image" content="https://horang-gotgam.vercel.app/public/images/durup/1_2.jpg">
   <meta property="og:url" content="https://horang-gotgam.vercel.app/">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="해청농원 곶감 — 지리산 명품 곶감">
-  <meta name="twitter:description" content="지리산 자락 함양에서 정성껏 말린 해청농원 곶감 선물세트">
-  <meta name="twitter:image" content="https://horang-gotgam.vercel.app/public/images/gotgam/1.jpeg">
+  <meta name="twitter:title" content="해청농원 두릅 — 지리산 산두릅">
+  <meta name="twitter:description" content="지리산 자락 함양에서 농장주가 직접 채취한 산두릅(참두릅)">
+  <meta name="twitter:image" content="https://horang-gotgam.vercel.app/public/images/durup/1_2.jpg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,7 +31,7 @@
   <div class="nav__inner">
     <a href="/" class="nav__logo">
       <span class="nav__logo-main">해청농원</span>
-      <span class="nav__logo-sub">지리산 명품 곶감</span>
+      <span class="nav__logo-sub">지리산 산두릅</span>
     </a>
     <nav class="nav__links">
       <a href="#products" class="nav__link">상품 보기</a>
@@ -78,12 +65,12 @@
         <span class="hero__eyebrow">해청농원 × 지리산</span>
         <h1 class="hero__title">
           지리산 자락,<br>
-          정성으로 말린<br>
-          <em>명품 곶감</em>
+          산에서 채취한<br>
+          <em>산두릅</em>
         </h1>
         <p class="hero__desc">
           경남 함양군 서하면, 청정 자연에서 자란<br>
-          감을 그대로 말려 깊은 단맛을 담았습니다.
+          참두릅의 진한 향을 그대로 전해드립니다.
         </p>
         <div class="hero__actions">
           <a href="./submitOrder.html" class="btn btn--primary btn--lg">
@@ -100,10 +87,10 @@
 
       <div class="hero__visual">
         <div class="hero__visual-wrap">
-          <img src="./images/gotgam/1.jpeg" alt="해청농원 명품 곶감" loading="eager">
+          <img src="./images/durup/1_2.jpg" alt="해청농원 산두릅 참두릅" loading="eager">
           <div class="hero__visual-badge">
             <span>해청농원</span>
-            <strong>지리산 곶감</strong>
+            <strong>지리산 산두릅</strong>
           </div>
         </div>
       </div>
@@ -123,14 +110,14 @@
           <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="currentColor" stroke-width="1.5"/>
           <circle cx="12" cy="9" r="2.5" stroke="currentColor" stroke-width="1.5"/>
         </svg>
-        <span>지리산 청정 자연</span>
+        <span>지리산 자연산</span>
       </div>
       <div class="trust-item">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
           <path d="M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z" stroke="currentColor" stroke-width="1.5"/>
           <path d="M16 3H8L6 7h12l-2-4z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
         </svg>
-        <span>자연 건조 · 선물 포장</span>
+        <span>당일 채취 · 신선 직배송</span>
       </div>
       <div class="trust-item">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -152,77 +139,46 @@
   <section class="section products" id="products">
     <div class="container">
       <div class="sec-head">
-        <span class="eyebrow">해청농원 곶감</span>
-        <h2 class="sec-title">5가지 선물세트, 정성을 담아</h2>
-        <p class="sec-desc">기본부터 명품특까지, 선물하시는 분의 마음에 맞춰 고르실 수 있도록<br>다섯 가지 선물세트를 준비했습니다.</p>
+        <span class="eyebrow">지리산 산두릅</span>
+        <h2 class="sec-title">정성으로 채취한 두 가지 두릅</h2>
+        <p class="sec-desc">산기슭을 하나하나 오르내리며 가장 좋은 것만 골라 담았습니다.<br>가장 신선한 향을 그대로 받아보세요.</p>
       </div>
 
       <div class="products__grid">
 
-        <div class="prod-card">
-          <div class="prod-card__img">
-            <img src="./images/gotgam/1.jpeg" alt="1호 기본 곶감 선물세트" loading="lazy">
-            <span class="prod-card__tag">기본</span>
-          </div>
-          <div class="prod-card__body">
-            <h3 class="prod-card__name">1호 기본</h3>
-            <p class="prod-card__detail">30개입 · 기본 선물세트</p>
-            <div class="prod-card__price">32,000<span>원</span></div>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-card__img">
-            <img src="./images/gotgam/2.jpeg" alt="2호 고급 곶감 선물세트" loading="lazy">
-            <span class="prod-card__tag">고급</span>
-          </div>
-          <div class="prod-card__body">
-            <h3 class="prod-card__name">2호 고급</h3>
-            <p class="prod-card__detail">30개입 · 고급 선물세트</p>
-            <div class="prod-card__price">45,000<span>원</span></div>
-          </div>
-        </div>
-
         <div class="prod-card prod-card--featured">
           <div class="prod-card__img">
-            <img src="./images/gotgam/3.jpeg" alt="3호 고급 곶감 선물세트" loading="lazy">
-            <span class="prod-card__tag prod-card__tag--gold">인기</span>
+            <img src="./images/durup/big_1.jpeg" alt="산두릅 본품 (참두릅)" loading="lazy">
+            <span class="prod-card__tag prod-card__tag--gold">본품</span>
           </div>
           <div class="prod-card__body">
-            <h3 class="prod-card__name">3호 고급</h3>
-            <p class="prod-card__detail">40개입 · 가장 인기있는 세트</p>
-            <div class="prod-card__price">65,000<span>원</span></div>
+            <h3 class="prod-card__name">산두릅 (참두릅)</h3>
+            <p class="prod-card__detail">1kg 단위 · 1~10kg 주문 가능</p>
+            <div class="prod-card__price">25,000<span>원/kg</span></div>
           </div>
         </div>
 
         <div class="prod-card">
           <div class="prod-card__img">
-            <img src="./images/gotgam/4.jpeg" alt="4호 명품 곶감 선물세트" loading="lazy">
-            <span class="prod-card__tag">명품</span>
+            <img src="./images/durup/small_1.jpeg" alt="곁순두릅 장아찌용" loading="lazy">
+            <span class="prod-card__tag">장아찌용</span>
           </div>
           <div class="prod-card__body">
-            <h3 class="prod-card__name">4호 명품</h3>
-            <p class="prod-card__detail">40개입 · 명품 선물세트</p>
-            <div class="prod-card__price">85,000<span>원</span></div>
-          </div>
-        </div>
-
-        <div class="prod-card">
-          <div class="prod-card__img">
-            <img src="./images/gotgam/5.jpeg" alt="5호 명품특 곶감 선물세트" loading="lazy">
-            <span class="prod-card__tag">명품특</span>
-          </div>
-          <div class="prod-card__body">
-            <h3 class="prod-card__name">5호 명품특</h3>
-            <p class="prod-card__detail">40개입 · 최고급 선물세트</p>
-            <div class="prod-card__price">110,000<span>원</span></div>
+            <h3 class="prod-card__name">곁순두릅</h3>
+            <p class="prod-card__detail">작은 사이즈 · 2kg 이상 주문</p>
+            <div class="prod-card__price">15,000<span>원/kg</span></div>
           </div>
         </div>
 
       </div>
 
+      <figure class="size-compare">
+        <img src="./images/durup/comparison.png" alt="산두릅과 곁순두릅 사이즈 비교" loading="lazy">
+        <figcaption>산두릅 vs 곁순두릅 사이즈 비교</figcaption>
+      </figure>
+
       <div class="products__cta">
-        <a href="./submitOrder.html" class="btn btn--primary btn--xl">곶감 주문하기</a>
+        <a href="./submitOrder.html" class="btn btn--primary btn--xl">두릅 주문하기</a>
         <a href="https://pf.kakao.com/_INxgzxb" class="btn btn--ghost btn--lg" target="_blank" rel="noopener">카톡으로 문의하기</a>
       </div>
     </div>
@@ -242,17 +198,17 @@
           <ul>
             <li>5만원 이상 무료배송</li>
             <li>5만원 미만 택배비 4,000원</li>
-            <li>원하시는 발송일 지정 가능</li>
+            <li>주문 접수 후 당일~익일 채취 발송</li>
             <li>보통 영업일 기준 1~2일 후 도착</li>
           </ul>
         </div>
         <div class="info-card">
-          <div class="info-card__icon">🍂</div>
-          <h3>상품 안내</h3>
+          <div class="info-card__icon">🌿</div>
+          <h3>채취 안내</h3>
           <ul>
-            <li>곶감은 겨울철 한정 판매</li>
-            <li>자연 건조 방식으로 깊은 단맛</li>
-            <li>명절 선물용 포장 제공</li>
+            <li>두릅은 봄철(4~5월) 한정 판매</li>
+            <li>입금 확인 후 순차 채취 발송</li>
+            <li>고사리, 취나물, 옻순도 별도 판매</li>
             <li>대량 주문은 카톡 문의</li>
           </ul>
         </div>
@@ -276,22 +232,22 @@
       <div class="story__inner">
         <div class="story__text">
           <span class="eyebrow">해청농원 이야기</span>
-          <h2 class="story__title">지리산 골짜기,<br>한겨울 바람에 말린 곶감</h2>
+          <h2 class="story__title">지리산 골짜기,<br>직접 채취한 귀한 두릅</h2>
           <p class="story__body">
             경남 함양군 서하면, 지리산 청정 자연 속<br>
-            해청농원의 곶감이 만들어집니다.
+            해청농원의 산두릅이 자랍니다.
           </p>
           <p class="story__body">
-            정성껏 깎아 한겨울 바람과 햇살에 말린 감은<br>
-            시간이 흐를수록 깊은 단맛과 쫀득한 식감을 담아내<br>
-            선물하는 이와 받는 이 모두의 마음을 채웁니다.
+            가장 부드럽고 향이 짙은 때를 놓치지 않기 위해<br>
+            농장주가 온종일 산기슭을 오르내리며<br>
+            하나하나 소중히 채취한 귀한 참두릅입니다.
           </p>
           <div class="story__actions">
             <a href="https://pf.kakao.com/_INxgzxb" class="btn btn--outline btn--md" target="_blank" rel="noopener">카카오톡 문의</a>
           </div>
         </div>
         <div class="story__img">
-          <img src="./images/gotgam/3.jpeg" alt="해청농원 곶감 선물세트" loading="lazy">
+          <img src="./images/durup/1_1.jpg" alt="해청농원 산두릅 채취" loading="lazy">
           <div class="story__img-decor"></div>
         </div>
       </div>
@@ -301,8 +257,8 @@
   <!-- ═══ CTA BANNER ═══ -->
   <section class="cta-banner">
     <div class="container cta-banner__inner">
-      <h2 class="cta-banner__title">명절 선물,<br>해청농원 곶감으로 마음을 전하세요</h2>
-      <p class="cta-banner__desc">정성껏 포장해 가장 신선한 상태로 보내드립니다.</p>
+      <h2 class="cta-banner__title">봄철 한정,<br>지리산 산두릅을 만나보세요</h2>
+      <p class="cta-banner__desc">가장 신선한 상태로 직접 채취해 보내드립니다.</p>
       <div class="cta-banner__actions">
         <a href="./submitOrder.html" class="btn btn--primary btn--xl">지금 주문하기</a>
         <a href="https://pf.kakao.com/_INxgzxb" class="btn btn--ghost-inv btn--xl" target="_blank" rel="noopener">카카오 문의하기</a>
@@ -318,7 +274,7 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <div class="footer__logo">해청농원</div>
-        <p class="footer__tagline">지리산 자락의 명품 곶감</p>
+        <p class="footer__tagline">지리산 자락의 산두릅</p>
         <p class="footer__addr">경남 함양군 서하면 서하월평길 35<br>대표: 이광호 · 010-9060-9281</p>
       </div>
       <div class="footer__links">

@@ -1,31 +1,38 @@
 /* ==========================================================================
-   Design System — 호랑곶감 × 해청농원
+   Design System — 해청농원 두릅
    ========================================================================== */
 
 @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&display=swap');
 
 :root {
-  /* ── Brand ── */
-  --c-brand:         #C4520F;
-  --c-brand-dark:    #9E3F08;
-  --c-brand-light:   #E07035;
-  --c-brand-muted:   #F0C4A0;
-  --c-gold:          #8B6914;
+  /* ── Brand (초록 / 연두) ── */
+  --c-brand:         #2E7D32;
+  --c-brand-dark:    #1B5E20;
+  --c-brand-light:   #66BB6A;
+  --c-brand-muted:   #C5E1A5;
+  --c-gold:          #7CB342;
+
+  /* RGB tuples for alpha-compositing via rgba(var(--x-rgb), α) */
+  --c-brand-rgb:     46, 125, 50;
+  --c-gold-rgb:      124, 179, 66;
+  --c-bg-dark-rgb:   15, 31, 15;
+  --c-text-inv-rgb:  247, 251, 241;
+  --c-shadow-rgb:    27, 61, 30;
 
   /* ── Neutrals ── */
-  --c-bg:            #FAFAF7;
-  --c-bg-alt:        #F3EBE0;
+  --c-bg:            #F7FBF1;
+  --c-bg-alt:        #EEF4E0;
   --c-bg-card:       #FFFFFF;
-  --c-bg-dark:       #1C1410;
+  --c-bg-dark:       #0F1F0F;
 
-  --c-text:          #1C1410;
-  --c-text-sub:      #5A4030;
-  --c-text-muted:    #9E8272;
-  --c-text-inv:      #FAFAF7;
+  --c-text:          #1B3D1E;
+  --c-text-sub:      #3D5C3D;
+  --c-text-muted:    #7A8F7A;
+  --c-text-inv:      #F7FBF1;
 
-  --c-border:        #E8D4BA;
-  --c-border-light:  #F0E4D0;
+  --c-border:        #C5E1A5;
+  --c-border-light:  #DCEDC8;
 
   /* ── Typography ── */
   --f-serif: 'Noto Serif KR', 'Georgia', serif;
@@ -33,8 +40,10 @@
              -apple-system, BlinkMacSystemFont, sans-serif;
 
   --text-xs:   0.75rem;    /* 12 */
+  --text-s:    0.8125rem;  /* 13 */
   --text-sm:   0.875rem;   /* 14 */
   --text-base: 1rem;       /* 16 */
+  --text-m:    1.0625rem;  /* 17 */
   --text-lg:   1.125rem;   /* 18 */
   --text-xl:   1.25rem;    /* 20 */
   --text-2xl:  1.5rem;     /* 24 */
@@ -72,11 +81,11 @@
   --r-full: 9999px;
 
   /* ── Shadows ── */
-  --sh-xs: 0 1px 2px rgba(28,20,9,.04);
-  --sh-sm: 0 1px 4px rgba(28,20,9,.06), 0 2px 8px rgba(28,20,9,.04);
-  --sh-md: 0 4px 12px rgba(28,20,9,.08), 0 2px 6px rgba(28,20,9,.04);
-  --sh-lg: 0 8px 28px rgba(28,20,9,.10), 0 4px 12px rgba(28,20,9,.05);
-  --sh-xl: 0 16px 48px rgba(28,20,9,.13), 0 8px 24px rgba(28,20,9,.06);
+  --sh-xs: 0 1px 2px rgba(var(--c-shadow-rgb),.04);
+  --sh-sm: 0 1px 4px rgba(var(--c-shadow-rgb),.06), 0 2px 8px rgba(var(--c-shadow-rgb),.04);
+  --sh-md: 0 4px 12px rgba(var(--c-shadow-rgb),.08), 0 2px 6px rgba(var(--c-shadow-rgb),.04);
+  --sh-lg: 0 8px 28px rgba(var(--c-shadow-rgb),.10), 0 4px 12px rgba(var(--c-shadow-rgb),.05);
+  --sh-xl: 0 16px 48px rgba(var(--c-shadow-rgb),.13), 0 8px 24px rgba(var(--c-shadow-rgb),.06);
 
   /* ── Motion ── */
   --ease-fast:   150ms cubic-bezier(.4,0,.2,1);
@@ -92,4 +101,32 @@
   --w-2xl: 1400px;
 
   --nav-h: 64px;
+}
+
+/* ── Gotgam theme overrides (주황 / 감빛) ── */
+html.product-gotgam {
+  --c-brand:         #C2410C;
+  --c-brand-dark:    #9A3412;
+  --c-brand-light:   #F97316;
+  --c-brand-muted:   #FED7AA;
+  --c-gold:          #EA580C;
+
+  --c-brand-rgb:     194, 65, 12;
+  --c-gold-rgb:      234, 88, 12;
+  --c-bg-dark-rgb:   28, 18, 8;
+  --c-text-inv-rgb:  255, 249, 242;
+  --c-shadow-rgb:    58, 31, 10;
+
+  --c-bg:            #FFF9F2;
+  --c-bg-alt:        #FFEFDD;
+  --c-bg-card:       #FFFFFF;
+  --c-bg-dark:       #1C1208;
+
+  --c-text:          #3A1F0A;
+  --c-text-sub:      #6B4422;
+  --c-text-muted:    #9B7A5A;
+  --c-text-inv:      #FFF9F2;
+
+  --c-border:        #FED7AA;
+  --c-border-light:  #FFEDD5;
 }

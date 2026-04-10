@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>주문하기 — 해청농원 호랑곶감</title>
 
-  <meta property="og:title" content="해청농원 곶감 주문페이지">
-  <meta property="og:description" content="해청농원 곶감 주문하기">
-  <meta property="og:image" content="https://horang-gotgam.vercel.app/images/gotgam/1.jpeg">
+  <script src="./env.js"></script>
+  <script>
+    (function () {
+      var t = (window.__HORANG_CONFIG__ || {}).productType;
+      document.documentElement.classList.add("product-" + (t === "durup" ? "durup" : "gotgam"));
+    })();
+  </script>
+
+  <title>주문하기 — 해청농원 두릅</title>
+
+  <meta property="og:title" content="해청농원 두릅 주문페이지">
+  <meta property="og:description" content="해청농원 산두릅(참두릅) 주문하기">
+  <meta property="og:image" content="https://horang-gotgam.vercel.app/public/images/durup/big_1.jpeg">
   <meta property="og:url" content="https://horang-gotgam.vercel.app/submitOrder.html">
   <meta property="og:type" content="website">
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="해청농원 곶감 주문페이지">
-  <meta name="twitter:description" content="해청농원 곶감 주문하기">
-  <meta name="twitter:image" content="https://horang-gotgam.vercel.app/images/gotgam/1.jpeg">
+  <meta name="twitter:title" content="해청농원 두릅 주문페이지">
+  <meta name="twitter:description" content="해청농원 산두릅(참두릅) 주문하기">
+  <meta name="twitter:image" content="https://horang-gotgam.vercel.app/public/images/durup/big_1.jpeg">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +72,7 @@
               <div class="product-item__price">32,000<span>원</span></div>
             </div>
             <select id="product1" name="product1">
-              <option value="0" disabled selected>수량 선택</option>
+              <option value="" disabled selected>수량 선택</option>
             </select>
           </div>
         </div>
@@ -79,7 +88,7 @@
               <div class="product-item__price">45,000<span>원</span></div>
             </div>
             <select id="product2" name="product2">
-              <option value="0" disabled selected>수량 선택</option>
+              <option value="" disabled selected>수량 선택</option>
             </select>
           </div>
         </div>
@@ -95,7 +104,7 @@
               <div class="product-item__price">65,000<span>원</span></div>
             </div>
             <select id="product3" name="product3">
-              <option value="0" disabled selected>수량 선택</option>
+              <option value="" disabled selected>수량 선택</option>
             </select>
           </div>
         </div>
@@ -111,7 +120,7 @@
               <div class="product-item__price">85,000<span>원</span></div>
             </div>
             <select id="product4" name="product4">
-              <option value="0" disabled selected>수량 선택</option>
+              <option value="" disabled selected>수량 선택</option>
             </select>
           </div>
         </div>
@@ -127,7 +136,7 @@
               <div class="product-item__price">110,000<span>원</span></div>
             </div>
             <select id="product5" name="product5">
-              <option value="0" disabled selected>수량 선택</option>
+              <option value="" disabled selected>수량 선택</option>
             </select>
           </div>
         </div>
@@ -150,7 +159,8 @@
               <p style="font-size:0.8125rem;color:var(--c-text-muted);margin-top:4px;">5만원 이상 택배비 면제</p>
             </div>
             <select id="durup1" name="durup1">
-              <option value="0" disabled selected>주문량 선택</option>
+              <option value="" disabled selected>주문량 선택</option>
+              <option value="0">0kg (취소)</option>
               <option value="1">1kg</option>
               <option value="2">2kg</option>
               <option value="3">3kg</option>
@@ -177,7 +187,8 @@
               <div class="product-item__price">15,000<span>원/kg</span></div>
             </div>
             <select id="durup2" name="durup2">
-              <option value="0" disabled selected>주문량 선택</option>
+              <option value="" disabled selected>주문량 선택</option>
+              <option value="0">0kg (취소)</option>
               <option value="2">2kg</option>
               <option value="3">3kg</option>
               <option value="4">4kg</option>
@@ -233,28 +244,30 @@
 
       <!-- ── 주문자 / 수령인 정보 ── -->
       <div class="order_info">
-        <p class="order_info-title">주문자 & 수령인 정보</p>
+        <div class="order_info-fields">
+          <p class="order_info-title">주문자 & 수령인 정보</p>
 
-        <label for="send_name">주문자 성함</label>
-        <input type="text" id="send_name" name="send_name" required placeholder="홍길동">
+          <label for="send_name">주문자 성함</label>
+          <input type="text" id="send_name" name="send_name" required placeholder="홍길동">
 
-        <label for="send_contact">주문자 연락처 (숫자만)</label>
-        <input type="text" id="send_contact" name="send_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+          <label for="send_contact">주문자 연락처 (숫자만)</label>
+          <input type="text" id="send_contact" name="send_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
 
-        <label for="rcv_name">받는 분 성함</label>
-        <input type="text" id="rcv_name" name="rcv_name" required placeholder="홍길동">
+          <label for="rcv_name">받는 분 성함</label>
+          <input type="text" id="rcv_name" name="rcv_name" required placeholder="홍길동">
 
-        <label for="rcv_contact">받는 분 연락처 (숫자만)</label>
-        <input type="text" id="rcv_contact" name="rcv_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+          <label for="rcv_contact">받는 분 연락처 (숫자만)</label>
+          <input type="text" id="rcv_contact" name="rcv_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
 
-        <label for="rcv_address">받는 분 주소</label>
-        <input type="text" id="rcv_address" name="rcv_address" required placeholder="서울시 강남구 테헤란로 123">
+          <label for="rcv_address">받는 분 주소</label>
+          <input type="text" id="rcv_address" name="rcv_address" required placeholder="서울시 강남구 테헤란로 123">
 
-        <label for="request_etc">해청농원 요청사항 (선택)</label>
-        <input type="text" id="request_etc" name="request_etc" placeholder="특별한 요청이 있으시면 적어주세요">
+          <label for="request_etc">해청농원 요청사항 (선택)</label>
+          <input type="text" id="request_etc" name="request_etc" placeholder="특별한 요청이 있으시면 적어주세요">
 
-        <label for="request_delivery">택배사 요청사항 (선택)</label>
-        <input type="text" id="request_delivery" name="request_delivery" placeholder="예: 문 앞에 놓아주세요">
+          <label for="request_delivery">택배사 요청사항 (선택)</label>
+          <input type="text" id="request_delivery" name="request_delivery" placeholder="예: 문 앞에 놓아주세요">
+        </div>
       </div>
 
       <!-- ── 아웃트로 ── -->
@@ -292,6 +305,7 @@
     <button onclick="newOrder()">새 주문 접수하기</button>
   </div>
 
+  <script src="./env.js"></script>
   <script type="module" src="./src/js/pages/submit-order.js"></script>
 </body>
 </html>

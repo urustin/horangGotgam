@@ -95,13 +95,11 @@ class SubmitOrderPage {
                 <div class="box_description">
                     <!-- 두릅 설명 -->
                     <div id="durup_desc" class="product_desc">
-                        <img class="img1" src="./images/durup/1_1.jpg" alt="">
                         <p class="dsc">
                             가장 부드럽고 맛있는 때를 놓치지 않기 위해<br>
                             농장주가 직접 온종일 산기슭 오르내리며<br>
                             하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
                         </p>
-                        <img class="img2" src="./images/durup/1_2.jpg" alt="">
                         <p class="dsc">
                             산기슭에서 자생하던 두릅이라<br>
                             다양한 품종이 섞여있고 모양이 불규칙합니다.<br>
@@ -330,13 +328,14 @@ class SubmitOrderPage {
                 const select = document.getElementById(`product${i}`);
                 if (select) {
                     if (data[`product${i}`] == "0") {
-                        select.innerHTML = '<option value="0" disabled selected>품절</option>';
+                        select.innerHTML = '<option value="" disabled selected>품절</option>';
                     } else {
 
-                        select.innerHTML = '<option value="0" disabled selected>갯수</option>';
+                        select.innerHTML = '<option value="" disabled selected>갯수</option>';
                         const length = parseInt(data[`product${i}`]);
                         for (let j = 0; j <= length; j++) {
-                            select.innerHTML += `<option value="${j}">${j}개</option>`;
+                            const label = j === 0 ? '0개 (취소)' : `${j}개`;
+                            select.innerHTML += `<option value="${j}">${label}</option>`;
                         }
                     }
                 }

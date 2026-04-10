@@ -1,5 +1,7 @@
 {
   "version": 2,
+  "buildCommand": "sh scripts/build-env.sh",
+  "outputDirectory": ".",
   "headers": [
     {
       "source": "/public/src/js/(.*).js",
