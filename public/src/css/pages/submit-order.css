@@ -144,7 +144,7 @@ br { display: block; content: ''; margin: 0; }
   background: var(--c-bg-card);
   border: 1px solid var(--c-border-light);
   border-radius: var(--r-lg);
-  padding: var(--sp-6);
+  padding: 0 var(--sp-6);
   margin-top: var(--sp-6);
   line-height: var(--lead-relaxed);
 }
@@ -356,7 +356,6 @@ select:hover { border-color: var(--c-text-sub); }
 /* Gosari section */
 .gosariBox {
   background: var(--c-bg-card);
-  border: 1px solid var(--c-border-light);
   border-radius: var(--r-lg);
   padding: var(--sp-8);
   text-align: center;
