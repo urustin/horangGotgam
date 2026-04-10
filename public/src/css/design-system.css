@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Design System — 호랑곶감 × 해청농원
+   ========================================================================== */
+
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700&display=swap');
+
+:root {
+  /* ── Brand ── */
+  --c-brand:         #C4520F;
+  --c-brand-dark:    #9E3F08;
+  --c-brand-light:   #E07035;
+  --c-brand-muted:   #F0C4A0;
+  --c-gold:          #8B6914;
+
+  /* ── Neutrals ── */
+  --c-bg:            #FAFAF7;
+  --c-bg-alt:        #F3EBE0;
+  --c-bg-card:       #FFFFFF;
+  --c-bg-dark:       #1C1410;
+
+  --c-text:          #1C1410;
+  --c-text-sub:      #5A4030;
+  --c-text-muted:    #9E8272;
+  --c-text-inv:      #FAFAF7;
+
+  --c-border:        #E8D4BA;
+  --c-border-light:  #F0E4D0;
+
+  /* ── Typography ── */
+  --f-serif: 'Noto Serif KR', 'Georgia', serif;
+  --f-sans:  'Pretendard Variable', 'Pretendard', 'Noto Sans KR',
+             -apple-system, BlinkMacSystemFont, sans-serif;
+
+  --text-xs:   0.75rem;    /* 12 */
+  --text-sm:   0.875rem;   /* 14 */
+  --text-base: 1rem;       /* 16 */
+  --text-lg:   1.125rem;   /* 18 */
+  --text-xl:   1.25rem;    /* 20 */
+  --text-2xl:  1.5rem;     /* 24 */
+  --text-3xl:  1.875rem;   /* 30 */
+  --text-4xl:  2.25rem;    /* 36 */
+  --text-5xl:  3rem;       /* 48 */
+  --text-6xl:  3.75rem;    /* 60 */
+
+  --lead-tight:   1.2;
+  --lead-snug:    1.375;
+  --lead-normal:  1.5;
+  --lead-relaxed: 1.65;
+
+  /* ── Spacing ── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-5:  20px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-10: 40px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-20: 80px;
+  --sp-24: 96px;
+  --sp-32: 128px;
+
+  /* ── Radius ── */
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   20px;
+  --r-xl:   28px;
+  --r-2xl:  40px;
+  --r-full: 9999px;
+
+  /* ── Shadows ── */
+  --sh-xs: 0 1px 2px rgba(28,20,9,.04);
+  --sh-sm: 0 1px 4px rgba(28,20,9,.06), 0 2px 8px rgba(28,20,9,.04);
+  --sh-md: 0 4px 12px rgba(28,20,9,.08), 0 2px 6px rgba(28,20,9,.04);
+  --sh-lg: 0 8px 28px rgba(28,20,9,.10), 0 4px 12px rgba(28,20,9,.05);
+  --sh-xl: 0 16px 48px rgba(28,20,9,.13), 0 8px 24px rgba(28,20,9,.06);
+
+  /* ── Motion ── */
+  --ease-fast:   150ms cubic-bezier(.4,0,.2,1);
+  --ease-base:   250ms cubic-bezier(.4,0,.2,1);
+  --ease-slow:   400ms cubic-bezier(.4,0,.2,1);
+  --ease-spring: 500ms cubic-bezier(.34,1.56,.64,1);
+
+  /* ── Layout ── */
+  --w-sm:  640px;
+  --w-md:  768px;
+  --w-lg:  1024px;
+  --w-xl:  1200px;
+  --w-2xl: 1400px;
+
+  --nav-h: 64px;
+}
