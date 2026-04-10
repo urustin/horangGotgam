@@ -10,7 +10,15 @@ import { formatDate } from '../utils/formatters.js';
  */
 class SubmitOrderPage {
     constructor() {
-        this.currentProductType = PRODUCT_TYPES; // or PRODUCT_TYPES.DURUP
+        // Resolve from <html class="product-gotgam|product-durup"> first (set by
+        // the split submitOrder-gotgam/durup.html), fall back to PRODUCT_TYPES
+        // (env.js) if the class isn't present for any reason.
+        const html = document.documentElement;
+        this.currentProductType = html.classList.contains('product-durup')
+            ? 'durup'
+            : html.classList.contains('product-gotgam')
+                ? 'gotgam'
+                : PRODUCT_TYPES;
         this.loadingInterval = null;
 
         this.init();
