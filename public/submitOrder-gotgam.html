@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko" class="product-gotgam">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>주문하기 — 해청농원 곶감</title>
+
+  <meta property="og:title" content="해청농원 곶감 주문페이지">
+  <meta property="og:description" content="해청농원 곶감 주문하기">
+  <meta property="og:image" content="https://horang-gotgam.vercel.app/public/images/gotgam/1.jpeg">
+  <meta property="og:url" content="https://horang-gotgam.vercel.app/submitOrder-gotgam.html">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="해청농원 곶감 주문페이지">
+  <meta name="twitter:description" content="해청농원 곶감 주문하기">
+  <meta name="twitter:image" content="https://horang-gotgam.vercel.app/public/images/gotgam/1.jpeg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <link rel="stylesheet" href="./src/css/pages/submit-order.css">
+</head>
+<body>
+
+  <!-- ── PAGE HEADER ── -->
+  <header class="page-header">
+    <div class="page-header__inner">
+      <a href="./" class="page-header__back">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <path d="M10 4L6 8l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        홈으로
+      </a>
+      <span class="page-header__title">해청농원 주문하기</span>
+    </div>
+  </header>
+
+  <!-- ── INTRO (JS rendered) ── -->
+  <div id="intro">
+    <!-- JS가 이 영역을 렌더링합니다 -->
+  </div>
+
+  <!-- ── ORDER FORM ── -->
+  <div id="orderBox">
+    <form id="orderForm" onsubmit="submitOrder(); return false;">
+
+      <!-- Floating price tag -->
+      <div id="priceTag" class="none">현재 금액 : 0원<br>(50,000원 이하<br>택배비 4,000원)</div>
+
+      <!-- ── 곶감 상품 ── -->
+      <div id="gotgam_products" class="product_list">
+
+        <div class="product-item">
+          <div class="imgBox">
+            <img class="productImg" src="./images/gotgam/1.jpeg" alt="1호 기본 곶감 선물세트">
+          </div>
+          <div class="product-item__info">
+            <div>
+              <div class="product-item__name">1호 기본</div>
+              <div class="product-item__meta">곶감 30개입</div>
+              <div class="product-item__price">32,000<span>원</span></div>
+            </div>
+            <select id="product1" name="product1">
+              <option value="" disabled selected>수량 선택</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="imgBox">
+            <img class="productImg" src="./images/gotgam/2.jpeg" alt="2호 고급 곶감 선물세트">
+          </div>
+          <div class="product-item__info">
+            <div>
+              <div class="product-item__name">2호 고급</div>
+              <div class="product-item__meta">곶감 30개입</div>
+              <div class="product-item__price">45,000<span>원</span></div>
+            </div>
+            <select id="product2" name="product2">
+              <option value="" disabled selected>수량 선택</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="imgBox">
+            <img class="productImg" src="./images/gotgam/3.jpeg" alt="3호 고급 곶감 선물세트">
+          </div>
+          <div class="product-item__info">
+            <div>
+              <div class="product-item__name">3호 고급</div>
+              <div class="product-item__meta">곶감 40개입</div>
+              <div class="product-item__price">65,000<span>원</span></div>
+            </div>
+            <select id="product3" name="product3">
+              <option value="" disabled selected>수량 선택</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="imgBox">
+            <img class="productImg" src="./images/gotgam/4.jpeg" alt="4호 명품 곶감 선물세트">
+          </div>
+          <div class="product-item__info">
+            <div>
+              <div class="product-item__name">4호 명품</div>
+              <div class="product-item__meta">곶감 40개입</div>
+              <div class="product-item__price">85,000<span>원</span></div>
+            </div>
+            <select id="product4" name="product4">
+              <option value="" disabled selected>수량 선택</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="product-item">
+          <div class="imgBox">
+            <img class="productImg" src="./images/gotgam/5.jpeg" alt="5호 명품특 곶감 선물세트">
+          </div>
+          <div class="product-item__info">
+            <div>
+              <div class="product-item__name">5호 명품특</div>
+              <div class="product-item__meta">곶감 40개입</div>
+              <div class="product-item__price">110,000<span>원</span></div>
+            </div>
+            <select id="product5" name="product5">
+              <option value="" disabled selected>수량 선택</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ── 날짜 선택 ── -->
+      <div id="gotgam_date" class="date_selector">
+        <div class="box_reserve_date">
+          <label for="reserve_date">발송일 선택</label>
+          <h4>원하시는 발송 날짜를 선택해주세요!</h4>
+          <h5>택배 도착일이 아닌 "발송일"을 지정 예약하실 수 있습니다.</h5>
+          <h5>보통 영업일 기준 1~2일 후 도착합니다.</h5>
+          <select name="reserve_date" id="reserve_date" required>
+            <option value="" disabled selected>날짜 선택하기</option>
+            <option value="입금순 순차배송">입금순 순차배송</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- ── 주문 요약 ── -->
+      <div class="summary_order"></div>
+
+      <!-- ── 주문자 / 수령인 정보 ── -->
+      <div class="order_info">
+        <div class="order_info-fields">
+          <p class="order_info-title">주문자 & 수령인 정보</p>
+
+          <label for="send_name">주문자 성함</label>
+          <input type="text" id="send_name" name="send_name" required placeholder="홍길동">
+
+          <label for="send_contact">주문자 연락처 (숫자만)</label>
+          <input type="text" id="send_contact" name="send_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+
+          <label for="rcv_name">받는 분 성함</label>
+          <input type="text" id="rcv_name" name="rcv_name" required placeholder="홍길동">
+
+          <label for="rcv_contact">받는 분 연락처 (숫자만)</label>
+          <input type="text" id="rcv_contact" name="rcv_contact" required pattern="[0-9]+" placeholder="01012345678" maxlength="11">
+
+          <label for="rcv_address">받는 분 주소</label>
+          <input type="text" id="rcv_address" name="rcv_address" required placeholder="서울시 강남구 테헤란로 123">
+
+          <label for="request_etc">해청농원 요청사항 (선택)</label>
+          <input type="text" id="request_etc" name="request_etc" placeholder="특별한 요청이 있으시면 적어주세요">
+
+          <label for="request_delivery">택배사 요청사항 (선택)</label>
+          <input type="text" id="request_delivery" name="request_delivery" placeholder="예: 문 앞에 놓아주세요">
+        </div>
+      </div>
+
+      <!-- ── 아웃트로 ── -->
+      <p id="gotgam_outro"></p>
+
+      <!-- ── 제출 ── -->
+      <button id="btn_submit" type="submit">주문 접수하기</button>
+      <div id="loading"></div>
+
+      <!-- 개인정보 수집 안내 -->
+      <p style="margin-top:16px;">
+        * 개인정보 수집 및 이용 안내 · 주체: 해청농원 · 항목: 성함, 연락처, 주소 · 목적: 제품 배송 및 상담<br>
+        * 거부 권리가 있으나 제품 구매가 불가능합니다. 주문서 제출 시 동의한 것으로 간주됩니다.
+      </p>
+      <p style="margin-bottom:8px;">
+        대표자: 이광호 (010-9060-9281) · 주소: 함양군 서하면 서하월평길 35 · 농업경영체 등록번호 1-002-183-373
+      </p>
+    </form>
+  </div>
+
+  <!-- ── 주문 완료 결과 ── -->
+  <div id="result" style="display: none;">
+    <h2>주문이 접수되었습니다!</h2>
+    <h4>정성을 담아 보내겠습니다 :)</h4>
+    <h4 id="totalFee">입금하실 금액:</h4>
+    <h4>계좌번호: 농협 352-1386-3306-83 이광호</h4>
+    <button onclick="copy_bankInfo()">계좌번호 복사하기</button>
+    <div class="orderReview"></div>
+    <button><a href="https://pf.kakao.com/_INxgzxb">카톡 문의하기</a></button>
+    <button onclick="newOrder()">새 주문 접수하기</button>
+  </div>
+
+  <script src="./env.js"></script>
+  <script type="module" src="./src/js/pages/submit-order.js"></script>
+</body>
+</html>
