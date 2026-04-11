@@ -668,6 +668,21 @@ select:hover { border-color: var(--c-text-sub); }
   .gosariBox .imageBox img { height: 200px; }
 
   #btn_submit { width: 60%; }
+
+  /* box_description on mobile: stack button below text */
+  .box_description h3,
+  .box_description h4 {
+    text-align: center;
+  }
+  .box_description h3 button,
+  .box_description h4 button {
+    display: block;
+    margin: var(--sp-3) auto 0;
+  }
+  .box_description p.dsc,
+  .dsc {
+    font-size: var(--text-s);
+  }
 }
 
 /* ── Desktop: box_description — button aligned right ── */
