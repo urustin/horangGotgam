@@ -224,7 +224,7 @@ class SubmitOrderPage {
             }
         }
 
-        if (total > 0 && total < SHIPPING_THRESHOLD) {
+        if (this.currentProductType === "gotgam" && total > 0 && total < SHIPPING_THRESHOLD) {
             total += SHIPPING_FEE;
         }
 
@@ -242,10 +242,11 @@ class SubmitOrderPage {
 
         if (total > 0) {
             toggleClass(priceTag, 'none', false);
-            priceTag.innerHTML = `현재 금액 : ${formatCurrency(total)}<br>` +
-                (total < SHIPPING_THRESHOLD
-                    ? `(${formatCurrency(SHIPPING_THRESHOLD)} 이하<br>택배비 ${formatCurrency(SHIPPING_FEE)})`
-                    : '');
+            let priceNote = '';
+            if (this.currentProductType === "gotgam" && total < SHIPPING_THRESHOLD) {
+                priceNote = `(${formatCurrency(SHIPPING_THRESHOLD)} 이하<br>택배비 ${formatCurrency(SHIPPING_FEE)})`;
+            }
+            priceTag.innerHTML = `현재 금액 : ${formatCurrency(total)}<br>` + priceNote;
         } else {
             toggleClass(priceTag, 'none', true);
         }
@@ -286,7 +287,7 @@ class SubmitOrderPage {
         if (summary) {
             const total = this.calculateTotal();
             summary += `<br>총 금액: ${formatCurrency(total)}`;
-            if (total < SHIPPING_THRESHOLD) {
+            if (this.currentProductType === "gotgam" && total < SHIPPING_THRESHOLD) {
                 summary += `<br>(배송비 ${formatCurrency(SHIPPING_FEE)} 포함)`;
             }
         }

@@ -140,7 +140,7 @@
     <div class="container">
       <div class="sec-head">
         <span class="eyebrow">지리산 산두릅</span>
-        <h2 class="sec-title">정성으로 채취한 두 가지 두릅</h2>
+        <h2 class="sec-title">정성으로 채취한 두릅</h2>
         <p class="sec-desc">산기슭을 하나하나 오르내리며 가장 좋은 것만 골라 담았습니다.<br>가장 신선한 향을 그대로 받아보세요.</p>
       </div>
 
@@ -154,7 +154,7 @@
           <div class="prod-card__body">
             <h3 class="prod-card__name">산두릅 (참두릅)</h3>
             <p class="prod-card__detail">1kg 단위 · 1~10kg 주문 가능</p>
-            <div class="prod-card__price">25,000<span>원/kg</span></div>
+            <div class="prod-card__price">30,000<span>원/kg</span></div>
           </div>
         </div>
 
@@ -166,7 +166,7 @@
           <div class="prod-card__body">
             <h3 class="prod-card__name">곁순두릅</h3>
             <p class="prod-card__detail">작은 사이즈 · 2kg 이상 주문</p>
-            <div class="prod-card__price">15,000<span>원/kg</span></div>
+            <div class="prod-card__price">20,000<span>원/kg</span></div>
           </div>
         </div>
 
@@ -333,6 +333,14 @@
     }),
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
+  document.querySelectorAll('.products__grid .prod-card').forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.products__grid .prod-card').forEach(c => c.classList.remove('prod-card--featured'));
+      card.classList.add('prod-card--featured');
+    });
+  });
+
   document.querySelectorAll('.prod-card, .info-card, .story__text, .story__img').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(24px)';

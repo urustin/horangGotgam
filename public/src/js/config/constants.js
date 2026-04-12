@@ -14,8 +14,8 @@ export const PRODUCT_PRICES = {
         product5: 110000
     },
     durup: {
-        durup1: 25000,
-        durup2: 15000
+        durup1: 30000,
+        durup2: 20000
     }
 };
 
