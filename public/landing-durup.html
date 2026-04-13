@@ -87,7 +87,10 @@
 
       <div class="hero__visual">
         <div class="hero__visual-wrap">
-          <img src="./images/durup/1_2.jpg" alt="해청농원 산두릅 참두릅" loading="eager">
+          <div class="hero__slider">
+            <img src="./images/durup/1_2.jpg" alt="해청농원 산두릅 참두릅" class="hero__slide active" loading="eager">
+            <img src="./images/durup/260413/main.jpeg" alt="해청농원 산두릅" class="hero__slide" loading="eager">
+          </div>
           <div class="hero__visual-badge">
             <span>해청농원</span>
             <strong>지리산 산두릅</strong>
@@ -148,7 +151,7 @@
 
         <div class="prod-card prod-card--featured">
           <div class="prod-card__img">
-            <img src="./images/durup/big_1.jpeg" alt="산두릅 본품 (참두릅)" loading="lazy">
+            <img src="./images/durup/260413/san_durup_1.jpeg" alt="산두릅 본품 (참두릅)" loading="lazy">
             <span class="prod-card__tag prod-card__tag--gold">본품</span>
           </div>
           <div class="prod-card__body">
@@ -160,7 +163,7 @@
 
         <div class="prod-card">
           <div class="prod-card__img">
-            <img src="./images/durup/small_1.jpeg" alt="곁순두릅 장아찌용" loading="lazy">
+            <img src="./images/durup/260413/gyut_durup_1.jpeg" alt="곁순두릅 장아찌용" loading="lazy">
             <span class="prod-card__tag">장아찌용</span>
           </div>
           <div class="prod-card__body">
@@ -333,6 +336,18 @@
     }),
     { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
   );
+  // Hero image slider
+  (function () {
+    var slides = document.querySelectorAll('.hero__slide');
+    if (slides.length < 2) return;
+    var idx = 0;
+    setInterval(function () {
+      slides[idx].classList.remove('active');
+      idx = (idx + 1) % slides.length;
+      slides[idx].classList.add('active');
+    }, 4000);
+  })();
+
   document.querySelectorAll('.products__grid .prod-card').forEach(card => {
     card.style.cursor = 'pointer';
     card.addEventListener('click', () => {

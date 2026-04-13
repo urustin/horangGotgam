@@ -108,6 +108,7 @@ class SubmitOrderPage {
                             농장주가 직접 온종일 산기슭 오르내리며<br>
                             하나하나 소중히 채취한 귀한 참두릅을 소개합니다.<br>
                         </p>
+                        <img src="./images/durup/260413/order.jpeg" alt="산두릅 채취" style="width:100%;border-radius:var(--r-lg);margin:var(--sp-4) 0;">
                         <p class="dsc">
                             산기슭에서 자생하던 두릅이라<br>
                             다양한 품종이 섞여있고 모양이 불규칙합니다.<br>
